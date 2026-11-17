@@ -22,7 +22,7 @@ captures:
     legende: Les trois modes de recherche et quand chacun s’applique.
   - src: ../../assets/projets/rag/resultats.png
     alt: Diapositive des résultats, score moyen de 0,85 pour le RAG contre 0,40 pour le modèle seul
-    legende: La synthèse des résultats présentée en soutenance.
+    legende: La synthèse des résultats de la première version, présentée en soutenance.
   - src: ../../assets/projets/rag/recherche-exacte-cve.png
     alt: Terminal montrant la détection de l’identifiant CVE-2025-14037 et la réponse obtenue
     legende: La recherche exacte d’une CVE à partir de son identifiant.
@@ -40,30 +40,42 @@ L’objectif était de construire un assistant **local** qui retrouve d’abord 
 
 **Une recherche en trois modes.**
 
-- **Recherche exacte** : quand la question contient un identifiant (`CVE-2025-14037`, `T1053.005`), le système va directement chercher l’entrée correspondante.
+- **Recherche exacte** : quand la question contient un identifiant (`CVE-2025-14037`, `T1053.005`), le système va directement chercher l’entrée correspondante. Si l’identifiant n’est pas dans la base, il le dit au lieu de répondre avec une entrée voisine.
 - **Recherche vectorielle** : les extraits sont encodés avec le modèle `all-MiniLM-L6-v2` et indexés dans FAISS, pour les questions formulées librement.
 - **Recherche hybride** : BM25 (mots-clés) et FAISS (sens) combinés, plus robuste sur les requêtes courtes.
 
-**Une génération 100 % locale.** Mistral, exécuté avec Ollama, rédige la réponse en français à partir des extraits retrouvés. Aucune donnée ne sort de la machine. Une interface Streamlit permet de poser des questions et d’afficher les sources utilisées.
+**Une génération 100 % locale.** Mistral, exécuté avec Ollama, rédige la réponse en français à partir des extraits retrouvés et cite ses sources. Aucune donnée ne sort de la machine. Une interface Streamlit permet de discuter avec l’assistant et d’afficher les extraits utilisés.
+
+**Une deuxième version plus solide.** Après la soutenance, j’ai repris le code en un paquet Python testé (70 tests) :
+
+- la détection des techniques, que la version 1 ne récupérait pas depuis le passage à ATT&CK v18 (stratégies de détection, journaux à surveiller), ainsi que les tactiques et les mesures d’atténuation ;
+- les noms des faiblesses CWE ;
+- un prompt protégé contre l’injection via le contenu des CVE ;
+- une évaluation plus complète.
 
 ## Évaluation
 
-Nous avons comparé le système RAG au même modèle utilisé seul, sur 20 questions portant sur MITRE ATT&CK et sur des CVE précises. Pour chaque question, une liste d’éléments attendus (identifiant, nom, sévérité, CWE) permet de calculer un score de couverture.
+Le système RAG est comparé au même modèle utilisé seul, sur 20 questions portant sur MITRE ATT&CK et sur des CVE précises. Pour chaque question, une liste d’éléments attendus (identifiant, nom, sévérité, CWE) permet de mesurer la couverture de la réponse. S’y ajoutent la fidélité au contexte et le taux d’hallucination.
 
-| Score de couverture moyen | RAG | Modèle seul |
+| Version 2 | RAG | Modèle seul |
 | --- | --- | --- |
-| Ensemble des questions | 0,85 | 0,40 |
-| Questions MITRE ATT&CK | 0,80 | 0,55 |
-| Questions CVE | 0,90 | 0,25 |
+| Couverture des éléments attendus | 0,975 | 0,375 |
+| Informations absentes de la question retrouvées | 24 sur 25 | 0 sur 25 |
+| Fidélité au contexte | 1,00 | – |
+| Taux d’hallucination | 0,05 | 0,50 |
 
-Le RAG fait mieux sur 15 questions sur 20 et égalise sur les 5 autres : le modèle seul ne le dépasse jamais. L’écart est le plus fort sur les CVE, où la réponse dépend d’informations exactes que le modèle ne peut pas deviner.
+Le modèle seul se trompe sur toutes les questions ATT&CK : six fois, il décrit la technique comme « l’utilisation de PowerShell ». Sur les CVE, il refuse de répondre en affirmant qu’elles n’existent pas. Le RAG ne fait qu’une erreur mesurée : il répond T1053 au lieu de T1053.005, alors que la bonne fiche était en tête des extraits.
+
+La première version obtenait 0,85 contre 0,40 sur un corpus plus grand, avec une mesure moins stricte.
 
 ## Limites
 
-Le score de couverture repose sur la présence de mots-clés : une réponse juste mais formulée autrement peut être sous-évaluée. Le jeu de 20 questions reste réduit, et le corpus ne couvre que les CVE récentes. Les pistes suivantes sont un reranking des résultats, l’ajout de la base CWE complète et une image Docker pour faciliter le déploiement.
+Les métriques reposent sur des éléments vérifiables (identifiants, noms, scores) : en relisant les réponses, j’ai trouvé une erreur qu’elles ne voient pas, une CWE mal nommée. Le jeu de 20 questions reste réduit, et le corpus ne couvre que les CVE récentes. Les pistes suivantes sont un reranking des résultats et une image Docker pour faciliter le déploiement.
 
 ## Ce que j’en retiens
 
 La qualité d’un RAG dépend autant de la recherche que du modèle. L’ajout de la recherche exacte sur les identifiants a corrigé la principale faiblesse de la recherche purement vectorielle, qui ramenait parfois une CVE proche au lieu de la bonne.
+
+Une métrique mal définie peut aussi tromper. Ma première mesure des hallucinations ne regardait que les identifiants et les scores. Elle donnait 0 au modèle seul, alors qu’il invente le nom de toutes les techniques : c’est en relisant les réponses que je l’ai vu et corrigé.
 
 Le [compte rendu complet](https://github.com/MiscuitAtlas/rag-cyber-mitre-nvd/blob/main/docs/Compte_rendu_P17.pdf) (28 pages) détaille la méthode et l’évaluation.

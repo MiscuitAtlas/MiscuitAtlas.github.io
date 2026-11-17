@@ -1,18 +1,18 @@
 ---
 /**
- * Résultat de l'évaluation du projet RAG : score de couverture moyen sur 20 questions.
+ * Résultat de l'évaluation du projet RAG (version 2) : couverture moyenne sur 20 questions.
  * Barres en SVG (attributs de géométrie, aucun style en ligne : compatible avec la CSP).
  */
 const series = [
-    { libelle: 'RAG', valeur: 0.85, classe: 'bar-rag' },
-    { libelle: 'Modèle seul', valeur: 0.4, classe: 'bar-llm' },
+    { libelle: 'RAG', valeur: 0.975, classe: 'bar-rag' },
+    { libelle: 'Modèle seul', valeur: 0.375, classe: 'bar-llm' },
 ];
 const largeur = 100;
-const format = (n: number) => n.toFixed(2).replace('.', ',');
+const format = (n: number) => n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 3 });
 ---
 
 <figure class="rag-chart">
-    <figcaption>Score de couverture moyen sur 20 questions</figcaption>
+    <figcaption>Couverture moyenne des éléments attendus, sur 20 questions</figcaption>
     <dl>
         {
             series.map((s) => (
