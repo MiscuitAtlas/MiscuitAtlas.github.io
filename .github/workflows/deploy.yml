@@ -1,5 +1,8 @@
 name: Vérifier et déployer le site
 
+# Le site compilé est publié sur la branche gh-pages, servie par GitHub Pages
+# (Settings → Pages → Deploy from a branch → gh-pages / root).
+
 on:
   push:
     branches: [main]
@@ -7,17 +10,16 @@ on:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  build:
-    name: Vérifier et construire
+  build-deploy:
+    name: Vérifier, construire et publier
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -35,23 +37,14 @@ jobs:
       - name: Vérifier les liens internes
         run: npm run check:links
 
-      - name: Préparer l'archive pour GitHub Pages
+      - name: Publier sur la branche gh-pages
         if: github.event_name != 'pull_request'
-        uses: actions/upload-pages-artifact@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: dist
-
-  deploy:
-    name: Déployer sur GitHub Pages
-    if: github.event_name != 'pull_request'
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          force_orphan: true
+          user_name: github-actions[bot]
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          commit_message: 'Publication du site'
