@@ -1,0 +1,35 @@
+---
+import { profil } from '../data/profil';
+
+const annee = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p>© {annee} {profil.nom}</p>
+        <p class="muted">
+            Site statique construit avec Astro et hébergé sur GitHub Pages.
+            <a href="https://github.com/MiscuitAtlas/MiscuitAtlas.github.io" rel="noopener noreferrer">Voir le code source</a>
+        </p>
+    </div>
+</footer>
+
+<style>
+    .site-footer {
+        margin-top: var(--space-9);
+        border-top: 1px solid var(--line-soft);
+        padding-block: var(--space-6);
+        font-size: var(--step--1);
+    }
+
+    .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: var(--space-3) var(--space-6);
+    }
+
+    .muted {
+        color: var(--text-muted);
+    }
+</style>

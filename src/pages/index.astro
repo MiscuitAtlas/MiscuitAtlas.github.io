@@ -1,0 +1,554 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import LdapRecord from '../components/LdapRecord.astro';
+import RagChart from '../components/RagChart.astro';
+import SleepThumb from '../components/SleepThumb.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Icon from '../components/Icon.astro';
+import { profil, experiences, formations, competences } from '../data/profil';
+
+const projets = (await getCollection('projets')).sort((a, b) => a.data.ordre - b.data.ordre);
+const vedette = projets.find((p) => p.data.enAvant);
+const autres = projets.filter((p) => !p.data.enAvant);
+---
+
+<Base>
+    <!-- ============ Présentation ============ -->
+    <section class="hero container" aria-labelledby="titre-nom">
+        <div class="hero-text">
+            <h1 id="titre-nom">{profil.nom}</h1>
+            <p class="hero-title">{profil.titre}, {profil.ecole}.</p>
+            <p class="hero-lead">{profil.accroche}</p>
+            <div class="btn-group">
+                <a class="btn btn-primary" href="#projets">Voir mes projets</a>
+                <a class="btn btn-secondary" href={profil.cv} download>
+                    <Icon name="download" /> Télécharger le CV
+                </a>
+            </div>
+        </div>
+        <LdapRecord />
+    </section>
+
+    <!-- ============ Projets ============ -->
+    <section class="section container" id="projets" aria-labelledby="titre-projets">
+        <div class="section-head">
+            <h2 id="titre-projets">Projets</h2>
+            <p>Un projet de recherche appliquée en cybersécurité, puis mes projets de développement web et mobile. Chacun a sa page détaillée.</p>
+        </div>
+
+        {
+            vedette && (
+                <article class="featured">
+                    <a class="featured-media" href={`/projets/${vedette.id}/`} tabindex="-1" aria-hidden="true">
+                        {vedette.data.couverture && (
+                            <Image
+                                src={vedette.data.couverture}
+                                alt=""
+                                widths={[640, 960, 1280]}
+                                sizes="(max-width: 60rem) 100vw, 640px"
+                            />
+                        )}
+                    </a>
+                    <div class="featured-body">
+                        <p class="meta">
+                            {vedette.data.contexte}, {vedette.data.annee}
+                        </p>
+                        <h3>
+                            <a href={`/projets/${vedette.id}/`}>{vedette.data.titre}</a>
+                        </h3>
+                        <p>{vedette.data.resume}</p>
+                        <RagChart />
+                        <ul class="stack" aria-label="Technologies">
+                            {vedette.data.stack.map((t) => <li>{t}</li>)}
+                        </ul>
+                        <a class="text-link" href={`/projets/${vedette.id}/`}>
+                            Lire l’étude de cas
+                        </a>
+                    </div>
+                </article>
+            )
+        }
+
+        <ul class="project-list">
+            {
+                autres.map((projet) => (
+                    <li>
+                        <a class="project-row" href={`/projets/${projet.id}/`}>
+                            <span class={`thumb ${projet.data.couvertureFormat === 'telephone' ? 'thumb-phone' : ''}`}>
+                                {projet.data.couverture ? (
+                                    <Image src={projet.data.couverture} alt="" widths={[240, 480]} sizes="240px" />
+                                ) : projet.id === 'suivi-sommeil' ? (
+                                    <SleepThumb />
+                                ) : (
+                                    <span class="thumb-empty" aria-hidden="true" />
+                                )}
+                            </span>
+                            <span class="row-body">
+                                <span class="row-title">{projet.data.titre}</span>
+                                <span class="row-resume">{projet.data.resume}</span>
+                                <span class="row-stack">{projet.data.stack.join(', ')}</span>
+                            </span>
+                            <span class="row-year">{projet.data.annee}</span>
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </section>
+
+    <!-- ============ Parcours ============ -->
+    <section class="section container" id="parcours" aria-labelledby="titre-parcours">
+        <div class="section-head">
+            <h2 id="titre-parcours">Parcours</h2>
+            <p>Deux stages en DSI hospitalière, sur la gestion des identités puis sur les données de santé.</p>
+        </div>
+
+        <h3 class="sub-title">Expérience</h3>
+        <ol class="timeline">
+            {
+                experiences.map((xp) => (
+                    <li>
+                        <p class="when">
+                            {xp.debut} – {xp.fin}
+                        </p>
+                        <div class="what">
+                            <h4>{xp.poste}</h4>
+                            <p class="where">
+                                {xp.structure}, {xp.lieu}
+                            </p>
+                            {xp.resume && <p class="muted">{xp.resume}</p>}
+                            {xp.points && (
+                                <ul class="points">
+                                    {xp.points.map((point) => (
+                                        <li>
+                                            <strong>{point.titre}.</strong> {point.texte}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
+                    </li>
+                ))
+            }
+        </ol>
+
+        <h3 class="sub-title">Formation</h3>
+        <ol class="timeline compact">
+            {
+                formations.map((f) => (
+                    <li>
+                        <p class="when">{f.periode}</p>
+                        <div class="what">
+                            <h4>{f.diplome}</h4>
+                            <p class="where">{f.etablissement}</p>
+                        </div>
+                    </li>
+                ))
+            }
+        </ol>
+    </section>
+
+    <!-- ============ Compétences ============ -->
+    <section class="section container" id="competences" aria-labelledby="titre-competences">
+        <div class="section-head">
+            <h2 id="titre-competences">Compétences</h2>
+            <p>Les outils que j’ai utilisés en stage, en Master et dans mes projets.</p>
+        </div>
+        <div class="skills">
+            {
+                competences.map((groupe) => (
+                    <div class="skill-group">
+                        <h3>{groupe.domaine}</h3>
+                        <ul class="stack">
+                            {groupe.outils.map((outil) => <li>{outil}</li>)}
+                        </ul>
+                        <p class="muted small">{groupe.usage}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </section>
+
+    <!-- ============ Contact ============ -->
+    <section class="section container" id="contact" aria-labelledby="titre-contact">
+        <div class="contact">
+            <div class="contact-intro">
+                <h2 id="titre-contact">Contact</h2>
+                <p class="lead">
+                    Vous proposez un stage de fin d’études en cybersécurité à partir de mars 2027 ? Écrivez-moi, je réponds rapidement.
+                </p>
+                <ul class="contact-links">
+                    <li>
+                        <a href={profil.linkedin} rel="noopener noreferrer">
+                            LinkedIn <Icon name="arrow-up-right" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href={profil.github} rel="noopener noreferrer">
+                            GitHub <Icon name="arrow-up-right" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href={profil.cv} download>
+                            CV en PDF <Icon name="download" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/lettre-de-motivation/">
+                            Lettre de motivation <Icon name="file-text" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <ContactForm />
+        </div>
+    </section>
+</Base>
+
+<style>
+    /* ---------- Présentation ---------- */
+    .hero {
+        display: grid;
+        gap: var(--space-7);
+        padding-block: var(--space-8) 0;
+    }
+
+    .hero-text {
+        display: grid;
+        gap: var(--space-5);
+        max-width: 52rem;
+    }
+
+    .hero-title {
+        font-size: clamp(var(--step-1), 1rem + 1vw, var(--step-2));
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+    }
+
+    .hero-lead {
+        color: var(--text-muted);
+        font-size: var(--step-1);
+        line-height: 1.55;
+        max-width: var(--measure);
+    }
+
+    /* ---------- Projet en vedette ---------- */
+    .featured {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+        gap: var(--space-7);
+        align-items: center;
+        padding: var(--space-6);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-m);
+        box-shadow: var(--shadow);
+    }
+
+    .featured-media img {
+        width: 100%;
+        border-radius: var(--radius-s);
+        border: 1px solid var(--line-soft);
+    }
+
+    .featured-body {
+        display: grid;
+        gap: var(--space-5);
+    }
+
+    .featured-body h3 {
+        font-size: var(--step-3);
+    }
+
+    .featured-body h3 a,
+    .row-title {
+        color: var(--text);
+        text-decoration: none;
+    }
+
+    .featured-body h3 a:hover {
+        color: var(--accent);
+    }
+
+    .featured-body > p:not(.meta) {
+        color: var(--text-muted);
+    }
+
+    .meta {
+        font-family: var(--font-mono);
+        font-size: var(--step--1);
+        color: var(--text-muted);
+    }
+
+    .text-link {
+        font-weight: 500;
+        justify-self: start;
+    }
+
+    /* ---------- Liste des autres projets ---------- */
+    .project-list {
+        margin: var(--space-6) 0 0;
+        padding: 0;
+        list-style: none;
+        border-top: 1px solid var(--line);
+    }
+
+    .project-list li {
+        border-bottom: 1px solid var(--line);
+    }
+
+    .project-row {
+        display: grid;
+        grid-template-columns: 10rem minmax(0, 1fr) auto;
+        gap: var(--space-6);
+        align-items: center;
+        padding: var(--space-5) var(--space-3);
+        color: inherit;
+        text-decoration: none;
+        border-radius: var(--radius-s);
+        transition: background-color 0.15s ease;
+    }
+
+    .project-row:hover {
+        background: var(--surface);
+    }
+
+    .project-row:hover .row-title {
+        color: var(--accent);
+    }
+
+    .thumb {
+        display: block;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        border-radius: var(--radius-s);
+        border: 1px solid var(--line-soft);
+        background: var(--surface-raised);
+    }
+
+    .thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    .thumb-phone img {
+        object-fit: contain;
+        object-position: center;
+        background: #faf8ef;
+    }
+
+    .thumb-empty {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .row-body {
+        display: grid;
+        gap: var(--space-1);
+    }
+
+    .row-title {
+        font-size: var(--step-1);
+        font-weight: 600;
+    }
+
+    .row-resume {
+        max-width: var(--measure);
+        color: var(--text-muted);
+        font-size: var(--step--1);
+        line-height: 1.5;
+    }
+
+    .row-stack {
+        margin-top: var(--space-1);
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--text-muted);
+    }
+
+    .row-year {
+        align-self: start;
+        padding-top: 0.2rem;
+        font-family: var(--font-mono);
+        font-size: var(--step--1);
+        color: var(--text-muted);
+    }
+
+    /* ---------- Parcours ---------- */
+    .sub-title {
+        margin: var(--space-7) 0 var(--space-4);
+        font-size: var(--step-2);
+    }
+
+    .timeline {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .timeline > li {
+        display: grid;
+        grid-template-columns: 13rem minmax(0, 1fr);
+        gap: var(--space-6);
+        padding-block: var(--space-5);
+        border-top: 1px solid var(--line);
+    }
+
+    .when {
+        font-family: var(--font-mono);
+        font-size: var(--step--1);
+        color: var(--accent);
+        padding-top: 0.2rem;
+    }
+
+    .what {
+        display: grid;
+        gap: var(--space-2);
+        max-width: var(--measure);
+    }
+
+    .what h4 {
+        font-size: var(--step-1);
+    }
+
+    .where {
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    .points {
+        margin: var(--space-2) 0 0;
+        padding-left: 1.1rem;
+        display: grid;
+        gap: var(--space-2);
+    }
+
+    .points li::marker {
+        color: var(--accent);
+    }
+
+    .points strong {
+        font-weight: 600;
+    }
+
+    .compact > li {
+        padding-block: var(--space-4);
+    }
+
+    .muted {
+        color: var(--text-muted);
+    }
+
+    .small {
+        font-size: var(--step--1);
+    }
+
+    /* ---------- Compétences ---------- */
+    .skills {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+        gap: var(--space-6) var(--space-7);
+    }
+
+    .skill-group {
+        display: grid;
+        gap: var(--space-3);
+        align-content: start;
+        padding-top: var(--space-4);
+        border-top: 2px solid var(--accent-strong);
+    }
+
+    /* ---------- Contact ---------- */
+    .contact {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+        gap: var(--space-8);
+        align-items: start;
+    }
+
+    .contact-intro {
+        display: grid;
+        gap: var(--space-5);
+    }
+
+    .lead {
+        font-size: var(--step-1);
+        color: var(--text-muted);
+        line-height: 1.55;
+    }
+
+    .contact-links {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border-top: 1px solid var(--line);
+    }
+
+    .contact-links li {
+        border-bottom: 1px solid var(--line);
+    }
+
+    .contact-links a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--space-3) var(--space-1);
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .contact-links a:hover {
+        color: var(--accent);
+    }
+
+    .contact-links :global(svg) {
+        width: 1.1rem;
+        height: 1.1rem;
+        color: var(--accent);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 60rem) {
+        .featured,
+        .contact {
+            grid-template-columns: 1fr;
+        }
+
+        .featured {
+            gap: var(--space-6);
+            padding: var(--space-5);
+        }
+
+        .project-row {
+            grid-template-columns: 8rem minmax(0, 1fr) auto;
+            gap: var(--space-4);
+        }
+    }
+
+    @media (max-width: 40rem) {
+        .hero {
+            padding-top: var(--space-7);
+        }
+
+        .project-row {
+            grid-template-columns: 1fr auto;
+            gap: var(--space-3);
+            padding-inline: 0;
+        }
+
+        .thumb {
+            grid-column: 1 / -1;
+        }
+
+        .timeline > li {
+            grid-template-columns: 1fr;
+            gap: var(--space-2);
+        }
+    }
+</style>

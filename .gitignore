@@ -1,0 +1,15 @@
+# Dépendances et build
+node_modules/
+dist/
+.astro/
+
+# Environnement
+.env
+.env.*
+
+# Fichiers système et éditeurs
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

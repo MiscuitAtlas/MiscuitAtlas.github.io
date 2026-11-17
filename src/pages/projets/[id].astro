@@ -1,0 +1,349 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import RagChart from '../../components/RagChart.astro';
+import SleepThumb from '../../components/SleepThumb.astro';
+
+export const getStaticPaths = (async () => {
+    const projets = (await getCollection('projets')).sort((a, b) => a.data.ordre - b.data.ordre);
+    return projets.map((projet, index) => ({
+        params: { id: projet.id },
+        props: {
+            projet,
+            precedent: projets[index - 1],
+            suivant: projets[index + 1],
+        },
+    }));
+}) satisfies GetStaticPaths;
+
+const { projet, precedent, suivant } = Astro.props;
+const { Content } = await render(projet);
+const d = projet.data;
+
+// Version grand format (WebP) ouverte par le lien « Agrandir », au lieu du PNG d'origine.
+const captures = await Promise.all(
+    d.captures.map(async (capture) => ({
+        ...capture,
+        grand: (await getImage({ src: capture.src, width: Math.min(capture.src.width, 1920), format: 'webp' })).src,
+    })),
+);
+---
+
+<Base titre={d.titre} description={d.resume}>
+    <article class="container case">
+        <a class="back" href="/#projets"><Icon name="arrow-left" /> Tous les projets</a>
+
+        <header class="case-head">
+            <h1>{d.titre}</h1>
+            <p class="case-resume">{d.resume}</p>
+            <dl class="facts">
+                <div>
+                    <dt>Contexte</dt>
+                    <dd>{d.contexte}</dd>
+                </div>
+                <div>
+                    <dt>Rôle</dt>
+                    <dd>{d.role}</dd>
+                </div>
+                <div>
+                    <dt>Année</dt>
+                    <dd>{d.annee}</dd>
+                </div>
+                <div>
+                    <dt>Technologies</dt>
+                    <dd>
+                        <ul class="stack">
+                            {d.stack.map((t) => <li>{t}</li>)}
+                        </ul>
+                    </dd>
+                </div>
+            </dl>
+            <div class="btn-group">
+                <a class="btn btn-primary" href={d.depot} rel="noopener noreferrer">
+                    Voir le code sur GitHub <Icon name="arrow-up-right" />
+                </a>
+                {
+                    d.demo && (
+                        <a class="btn btn-secondary" href={d.demo} rel="noopener noreferrer">
+                            Ouvrir la démo <Icon name="arrow-up-right" />
+                        </a>
+                    )
+                }
+            </div>
+        </header>
+
+        {
+            d.couverture ? (
+                <figure class={`cover ${d.couvertureFormat === 'telephone' ? 'cover-phone' : ''}`}>
+                    <Image
+                        src={d.couverture}
+                        alt={d.couvertureAlt ?? ''}
+                        widths={[640, 1024, 1440]}
+                        sizes="(max-width: 72rem) 100vw, 72rem"
+                        loading="eager"
+                    />
+                </figure>
+            ) : projet.id === 'suivi-sommeil' ? (
+                <figure class="cover cover-illustration">
+                    <SleepThumb />
+                </figure>
+            ) : null
+        }
+
+        <div class="case-body">
+            {projet.id === 'rag-cybersecurite' && (
+                <div class="chart-block">
+                    <RagChart />
+                </div>
+            )}
+            <div class="prose">
+                <Content />
+            </div>
+        </div>
+
+        {
+            captures.length > 0 && (
+                <section class="gallery" aria-labelledby="titre-captures">
+                    <h2 id="titre-captures">Captures d’écran</h2>
+                    <div class={`gallery-grid ${d.couvertureFormat === 'telephone' ? 'gallery-phone' : ''}`}>
+                        {captures.map((capture) => (
+                            <figure>
+                                <a href={capture.grand} aria-label={`Agrandir : ${capture.alt}`}>
+                                    <Image src={capture.src} alt={capture.alt} widths={[480, 960]} sizes="(max-width: 46rem) 100vw, 34rem" />
+                                </a>
+                                <figcaption>{capture.legende}</figcaption>
+                            </figure>
+                        ))}
+                    </div>
+                </section>
+            )
+        }
+
+        <nav class="pager" aria-label="Autres projets">
+            {
+                precedent ? (
+                    <a class="pager-link" href={`/projets/${precedent.id}/`}>
+                        <span class="pager-dir">
+                            <Icon name="chevron-left" /> Projet précédent
+                        </span>
+                        <span class="pager-title">{precedent.data.titre}</span>
+                    </a>
+                ) : (
+                    <span />
+                )
+            }
+            {
+                suivant && (
+                    <a class="pager-link next" href={`/projets/${suivant.id}/`}>
+                        <span class="pager-dir">
+                            Projet suivant <Icon name="chevron-right" />
+                        </span>
+                        <span class="pager-title">{suivant.data.titre}</span>
+                    </a>
+                )
+            }
+        </nav>
+    </article>
+</Base>
+
+<style>
+    .case {
+        padding-top: var(--space-6);
+    }
+
+    .back {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-size: var(--step--1);
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    .back :global(svg) {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .case-head {
+        display: grid;
+        gap: var(--space-5);
+        margin-top: var(--space-6);
+        max-width: 56rem;
+    }
+
+    .case-head h1 {
+        font-size: var(--step-4);
+    }
+
+    .case-resume {
+        font-size: var(--step-1);
+        color: var(--text-muted);
+        line-height: 1.55;
+        max-width: var(--measure);
+    }
+
+    .facts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+        gap: var(--space-4) var(--space-6);
+        margin: var(--space-2) 0;
+        padding-block: var(--space-5);
+        border-block: 1px solid var(--line);
+    }
+
+    .facts dt {
+        font-size: var(--step--1);
+        color: var(--text-muted);
+        margin-bottom: var(--space-1);
+    }
+
+    .facts dd {
+        margin: 0;
+    }
+
+    .btn :global(svg) {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .cover {
+        margin: var(--space-7) 0 0;
+    }
+
+    .cover img {
+        width: 100%;
+        border-radius: var(--radius-m);
+        border: 1px solid var(--line);
+    }
+
+    .cover-phone img {
+        width: auto;
+        max-height: 34rem;
+        margin-inline: auto;
+    }
+
+    .cover-illustration {
+        max-width: 34rem;
+        aspect-ratio: 16 / 10;
+        border-radius: var(--radius-m);
+        overflow: hidden;
+        border: 1px solid var(--line);
+    }
+
+    .case-body {
+        display: grid;
+        gap: var(--space-6);
+        margin-top: var(--space-7);
+    }
+
+    .chart-block {
+        max-width: 34rem;
+        padding: var(--space-5);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-m);
+    }
+
+    .prose :global(h2:first-child) {
+        margin-top: 0;
+    }
+
+    .gallery {
+        margin-top: var(--space-8);
+    }
+
+    .gallery h2 {
+        font-size: var(--step-3);
+        margin-bottom: var(--space-5);
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 26rem), 1fr));
+        gap: var(--space-6);
+    }
+
+    .gallery-phone {
+        grid-template-columns: repeat(auto-fill, minmax(14rem, 18rem));
+    }
+
+    .gallery figure {
+        margin: 0;
+        display: grid;
+        gap: var(--space-2);
+    }
+
+    .gallery img {
+        width: 100%;
+        border-radius: var(--radius-s);
+        border: 1px solid var(--line);
+    }
+
+    .gallery a:hover img {
+        border-color: var(--accent);
+    }
+
+    .gallery figcaption {
+        font-size: var(--step--1);
+        color: var(--text-muted);
+    }
+
+    .pager {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--space-5);
+        margin-top: var(--space-9);
+        padding-top: var(--space-6);
+        border-top: 1px solid var(--line);
+    }
+
+    .pager-link {
+        display: grid;
+        gap: var(--space-1);
+        max-width: 45%;
+        text-decoration: none;
+    }
+
+    .pager-link.next {
+        text-align: right;
+        justify-items: end;
+        margin-left: auto;
+    }
+
+    .pager-dir {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-1);
+        font-size: var(--step--1);
+        color: var(--text-muted);
+    }
+
+    .pager-dir :global(svg) {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .pager-title {
+        font-weight: 600;
+        color: var(--text);
+    }
+
+    .pager-link:hover .pager-title {
+        color: var(--accent);
+    }
+
+    @media (max-width: 40rem) {
+        .pager {
+            flex-direction: column;
+        }
+
+        .pager-link,
+        .pager-link.next {
+            max-width: none;
+        }
+    }
+</style>

@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { profil } from '../data/profil';
+---
+
+<Base titre="Lettre de motivation" description="Lettre de motivation de Maxence Français pour un stage de fin d’études en cybersécurité à partir de mars 2027.">
+    <article class="container letter">
+        <a class="back" href="/#contact"><Icon name="arrow-left" /> Retour</a>
+        <h1>Lettre de motivation</h1>
+        <div class="prose">
+            <p>Madame, Monsieur,</p>
+            <p>
+                Actuellement étudiant en deuxième année de Master Cybersécurité – Défense des systèmes d’information à l’INSA
+                Hauts-de-France – Université Polytechnique Hauts-de-France, je suis à la recherche d’un stage de fin d’études
+                d’une durée de 20 semaines minimum, à compter de mars 2027.
+            </p>
+            <p>
+                Au cours de mon parcours académique et de mes expériences au sein de la Direction des systèmes d’information et
+                du numérique (DSIN) du Groupe AHNAC, j’ai développé une solide expertise à la croisée de la sécurité des
+                systèmes d’information, de la gestion des identités (IAM) et du développement sécurisé.
+            </p>
+            <p>Mes stages m’ont permis d’intervenir sur des projets critiques au sein d’un environnement hospitalier exigeant :</p>
+            <ul>
+                <li>
+                    <strong>Gestion des accès et IAM :</strong> conception et refonte d’une application web centralisée sous
+                    ASP.NET Core (C#, LDAP) pour gérer l’annuaire Active Directory, sécuriser la configuration (User Secrets),
+                    mettre en place l’authentification unique et automatiser les workflows d’habilitation (VPN, droits applicatifs).
+                </li>
+                <li>
+                    <strong>Bases de données et outils métier :</strong> optimisation de requêtes SQL et HQL complexes, traitement
+                    sécurisé de données de santé (HDS, RGPD) et développement d’applications web de suivi métier (ASP, PHP,
+                    JavaScript) lors de phases de migration du SI.
+                </li>
+            </ul>
+            <p>
+                En parallèle, ma formation en Master m’apporte des compétences pratiques en cyberdéfense, tests d’intrusion,
+                analyse forensique, cryptographie et administration d’infrastructures sécurisées (Kali Linux, Metasploit,
+                Wireshark, Volatility, Autopsy), ainsi que l’habitude de relever des challenges techniques tels que les Crackme.
+            </p>
+            <p>
+                Rigoureux, autonome et passionné par les enjeux de sécurité et de résilience des infrastructures informatiques,
+                je souhaite intégrer une équipe pour contribuer activement à la protection et à l’optimisation des systèmes
+                d’information.
+            </p>
+            <p>
+                Je reste à votre disposition pour échanger de vive voix sur mon profil et sur la manière dont je pourrais
+                m’investir au sein de votre entreprise. Je vous prie d’agréer, Madame, Monsieur, l’expression de mes salutations
+                distinguées.
+            </p>
+            <p class="signature">
+                <strong>{profil.nom}</strong><br />
+                Étudiant en Master 2 Cybersécurité
+            </p>
+        </div>
+        <div class="btn-group actions">
+            <a class="btn btn-primary" href="/#contact">Me contacter</a>
+            <a class="btn btn-secondary" href={profil.cv} download><Icon name="download" /> Télécharger le CV</a>
+        </div>
+    </article>
+</Base>
+
+<style>
+    .letter {
+        padding-top: var(--space-6);
+        display: grid;
+        gap: var(--space-6);
+    }
+
+    .letter h1 {
+        font-size: var(--step-4);
+    }
+
+    .back {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-size: var(--step--1);
+        font-weight: 500;
+        text-decoration: none;
+        justify-self: start;
+    }
+
+    .back :global(svg),
+    .btn :global(svg) {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .prose p,
+    .prose li {
+        line-height: 1.7;
+    }
+
+    .signature {
+        margin-top: var(--space-6);
+    }
+</style>

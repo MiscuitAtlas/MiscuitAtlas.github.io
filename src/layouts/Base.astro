@@ -1,0 +1,59 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { profil } from '../data/profil';
+
+interface Props {
+    titre?: string;
+    description?: string;
+    image?: string;
+}
+
+const { titre, description = profil.description, image = '/og.png' } = Astro.props;
+const titreComplet = titre ? `${titre} – ${profil.nom}` : `${profil.nom} – Cybersécurité`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = new URL(image, Astro.site);
+---
+
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+        <title>{titreComplet}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonical} />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="sitemap" href="/sitemap-index.xml" />
+        <meta name="theme-color" content="#0d1527" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="fr_FR" />
+        <meta property="og:site_name" content={profil.nom} />
+        <meta property="og:title" content={titreComplet} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <!-- Applique le thème choisi avant l'affichage pour éviter un flash. Son empreinte est ajoutée à la CSP par Astro. -->
+        <script is:inline>
+            try {
+                const theme = localStorage.getItem('theme');
+                if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+            } catch (e) {}
+        </script>
+    </head>
+    <body>
+        <a class="skip-link" href="#contenu">Aller au contenu</a>
+        <Header />
+        <main id="contenu">
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "portfolio-maxence-francais",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio de Maxence Français, étudiant en Master 2 Cybersécurité",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "check:links": "node scripts/check-links.mjs"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/sitemap": "^3.7.5",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/ibm-plex-sans": "^5.3.0",
+    "astro": "^7.4.12",
+    "lucide-static": "^1.74.0",
+    "sharp": "^0.35.5",
+    "simple-icons": "^16.38.0",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

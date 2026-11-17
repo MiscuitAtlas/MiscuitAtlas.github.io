@@ -1,0 +1,94 @@
+---
+/**
+ * Résultat de l'évaluation du projet RAG : score de couverture moyen sur 20 questions.
+ * Barres en SVG (attributs de géométrie, aucun style en ligne : compatible avec la CSP).
+ */
+const series = [
+    { libelle: 'RAG', valeur: 0.85, classe: 'bar-rag' },
+    { libelle: 'Modèle seul', valeur: 0.4, classe: 'bar-llm' },
+];
+const largeur = 100;
+const format = (n: number) => n.toFixed(2).replace('.', ',');
+---
+
+<figure class="rag-chart">
+    <figcaption>Score de couverture moyen sur 20 questions</figcaption>
+    <dl>
+        {
+            series.map((s) => (
+                <div class="row">
+                    <dt>{s.libelle}</dt>
+                    <dd>
+                        <svg viewBox={`0 0 ${largeur} 8`} preserveAspectRatio="none" aria-hidden="true">
+                            <rect class="track" x="0" y="0" width={largeur} height="8" rx="1" />
+                            <rect class={s.classe} x="0" y="0" width={s.valeur * largeur} height="8" rx="1" />
+                        </svg>
+                        <span class="value">{format(s.valeur)}</span>
+                    </dd>
+                </div>
+            ))
+        }
+    </dl>
+</figure>
+
+<style>
+    .rag-chart {
+        margin: 0;
+        display: grid;
+        gap: var(--space-3);
+    }
+
+    figcaption {
+        font-size: var(--step--1);
+        color: var(--text-muted);
+    }
+
+    dl {
+        display: grid;
+        gap: var(--space-2);
+        margin: 0;
+    }
+
+    .row {
+        display: grid;
+        grid-template-columns: 7rem 1fr;
+        align-items: center;
+        gap: var(--space-3);
+    }
+
+    dt {
+        font-size: var(--step--1);
+    }
+
+    dd {
+        display: grid;
+        grid-template-columns: 1fr 3rem;
+        align-items: center;
+        gap: var(--space-3);
+        margin: 0;
+    }
+
+    svg {
+        width: 100%;
+        height: 0.6rem;
+        display: block;
+    }
+
+    .track {
+        fill: var(--line-soft);
+    }
+
+    .bar-rag {
+        fill: var(--accent-strong);
+    }
+
+    .bar-llm {
+        fill: var(--bar-muted);
+    }
+
+    .value {
+        font-family: var(--font-mono);
+        font-size: var(--step--1);
+        text-align: right;
+    }
+</style>

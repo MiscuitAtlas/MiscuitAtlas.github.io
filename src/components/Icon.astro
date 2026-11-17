@@ -1,0 +1,43 @@
+---
+/**
+ * Icônes Lucide (licence ISC), insérées en SVG dans la page : aucune police d'icônes à charger.
+ */
+import arrowLeft from 'lucide-static/icons/arrow-left.svg?raw';
+import arrowUpRight from 'lucide-static/icons/arrow-up-right.svg?raw';
+import download from 'lucide-static/icons/download.svg?raw';
+import fileText from 'lucide-static/icons/file-text.svg?raw';
+import moon from 'lucide-static/icons/moon.svg?raw';
+import send from 'lucide-static/icons/send.svg?raw';
+import sun from 'lucide-static/icons/sun.svg?raw';
+import check from 'lucide-static/icons/check.svg?raw';
+import circleAlert from 'lucide-static/icons/circle-alert.svg?raw';
+import chevronLeft from 'lucide-static/icons/chevron-left.svg?raw';
+import chevronRight from 'lucide-static/icons/chevron-right.svg?raw';
+
+const icons = {
+    'arrow-left': arrowLeft,
+    'arrow-up-right': arrowUpRight,
+    download,
+    'file-text': fileText,
+    moon,
+    send,
+    sun,
+    check,
+    'circle-alert': circleAlert,
+    'chevron-left': chevronLeft,
+    'chevron-right': chevronRight,
+} as const;
+
+interface Props {
+    name: keyof typeof icons;
+    class?: string;
+}
+
+const { name, class: className = '' } = Astro.props;
+const svg = icons[name]
+    .replace(/<!--[\s\S]*?-->/, '')
+    .replace(/class="[^"]*"/, `class="icon ${className}" aria-hidden="true" focusable="false"`)
+    .trim();
+---
+
+<Fragment set:html={svg} />
