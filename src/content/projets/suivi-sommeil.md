@@ -1,29 +1,53 @@
 ---
 titre: Suivi du sommeil
-resume: Une application web pour noter ses nuits, calculer ses cycles de sommeil et suivre sa semaine avec des indicateurs et un graphique.
+resume: Application web de suivi du sommeil par cycles de 90 minutes, avec bilan de la semaine, contrôle d’accès par ressource et menu administrable.
 annee: '2024'
-contexte: Projet de formation
+contexte: TP CakePHP, licence professionnelle DLWM
 role: Conception et développement
-stack: [CakePHP 5, PHP 8, MySQL, Chart.js]
+stack: [CakePHP 5, PHP 8, MySQL, PHPUnit]
 ordre: 3
-depot: https://github.com/MiscuitAtlas/Suivi_Sommeil_CakePHP
+depot: https://github.com/MiscuitAtlas/suivi-sommeil-cakephp
+couverture: ../../assets/projets/suivi-sommeil/tableau-de-bord.jpg
+couvertureAlt: Tableau de bord avec la nuit du jour à 5 cycles, les objectifs de la semaine et les dernières nuits
+captures:
+  - src: ../../assets/projets/suivi-sommeil/semaine.jpg
+    alt: Bilan d’une semaine avec les objectifs atteints, les moyennes et le graphique des cycles par nuit
+    legende: 'Le bilan de la semaine : objectifs, moyennes et cycles par nuit.'
+  - src: ../../assets/projets/suivi-sommeil/ajout.jpg
+    alt: Formulaire d’ajout d’une nuit qui propose les heures de réveil en fin de cycle
+    legende: La saisie d’une nuit, avec les heures de réveil conseillées.
+  - src: ../../assets/projets/suivi-sommeil/menus.jpg
+    alt: Gestion du menu de navigation avec les boutons pour changer l’ordre des liens
+    legende: Le menu de navigation, géré par les administrateurs.
+  - src: ../../assets/projets/suivi-sommeil/accueil.jpg
+    alt: Page d’accueil qui présente le principe des cycles de sommeil
+    legende: La page d’accueil, pour les visiteurs.
 ---
 
 ## Le projet
 
-Une application web en CakePHP où chaque utilisateur dispose de son espace personnel pour suivre son sommeil au quotidien.
+Chaque matin, l’utilisateur note l’heure du coucher et du lever. L’application calcule la durée et le nombre de cycles de 90 minutes, indique si le réveil est tombé en fin de cycle et suit deux objectifs sur la semaine : 42 cycles au total, et quatre jours d’affilée à cinq cycles ou plus. Réalisé lors d’un TP de licence professionnelle, puis réécrit sur CakePHP 5.4.
 
 ## Fonctionnalités
 
-- **Comptes utilisateurs** : inscription, connexion et modification du compte, avec le plugin d’authentification de CakePHP. Les mots de passe sont hachés.
-- **Saisie quotidienne** : heure de coucher et de lever, forme au réveil (de 0 à 10), siestes, sport et commentaire libre.
-- **Cycles de sommeil** : la durée de la nuit est convertie en cycles de 90 minutes.
-- **Résumé hebdomadaire** : un tableau jour par jour et un graphique Chart.js de l’évolution des cycles.
-- **Indicateurs** : l’objectif de la semaine est atteint avec au moins 42 cycles au total et au moins 4 jours consécutifs à 5 cycles ou plus.
-- **Menu administrable** : les liens de navigation sont stockés en base et gérés depuis l’application.
+- **Saisie d’une nuit** : heures, forme au réveil, siestes, sport et commentaire. Le formulaire propose les heures de réveil qui tombent en fin de cycle.
+- **Tableau de bord** et **bilan de la semaine** avec graphique, moyennes et navigation d’une semaine à l’autre.
+- **Historique** paginé et triable, une seule nuit par date.
+- **Comptes** : inscription, profil, changement de mot de passe, suppression du compte et de ses données.
+- **Menu administrable** : liens ajoutés, modifiés et réordonnés depuis l’application par les administrateurs.
 
-## Points techniques
+## Sécurité
 
-- Architecture MVC de CakePHP 5 : contrôleurs, tables et entités, gabarits.
-- Schéma de base versionné avec les migrations CakePHP, et jeu de données de test (seeds).
-- Protection CSRF activée sur les formulaires grâce au middleware du framework.
+La première version contenait plusieurs failles : une page publique réinitialisait le mot de passe de n’importe quel compte et l’affichait à l’écran, toutes les nuits de tous les utilisateurs étaient visibles, et une nuit d’un autre compte se modifiait en changeant l’identifiant dans l’adresse. La version actuelle les corrige :
+
+- contrôle d’accès par ressource avec le plugin Authorization, vérification obligatoire sur chaque requête ;
+- propriétaire d’une nuit et rôle d’un compte jamais lus dans le formulaire, cycles recalculés par le serveur ;
+- jeton CSRF sur chaque formulaire, actions sensibles uniquement en POST, ancien mot de passe exigé pour le changer ;
+- politique de sécurité du contenu stricte, sans script ni style en ligne, et aucune bibliothèque chargée depuis un CDN ;
+- aucun secret dans le dépôt : la configuration locale a été retirée de l’historique.
+
+## Qualité
+
+- Calcul des cycles et du bilan dans des services indépendants du framework.
+- 71 tests PHPUnit : règles de calcul, validation, droits d’accès et pile de middlewares.
+- Code vérifié avec les règles de codage CakePHP, pages auditées avec axe, interface adaptée au téléphone.

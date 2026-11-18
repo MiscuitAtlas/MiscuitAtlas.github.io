@@ -5,7 +5,6 @@ import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import RagChart from '../../components/RagChart.astro';
-import SleepThumb from '../../components/SleepThumb.astro';
 
 export const getStaticPaths = (async () => {
     const projets = (await getCollection('projets')).sort((a, b) => a.data.ordre - b.data.ordre);
@@ -85,10 +84,6 @@ const captures = await Promise.all(
                         sizes="(max-width: 72rem) 100vw, 72rem"
                         loading="eager"
                     />
-                </figure>
-            ) : projet.id === 'suivi-sommeil' ? (
-                <figure class="cover cover-illustration">
-                    <SleepThumb />
                 </figure>
             ) : null
         }
@@ -226,13 +221,6 @@ const captures = await Promise.all(
         margin-inline: auto;
     }
 
-    .cover-illustration {
-        max-width: 34rem;
-        aspect-ratio: 16 / 10;
-        border-radius: var(--radius-m);
-        overflow: hidden;
-        border: 1px solid var(--line);
-    }
 
     .case-body {
         display: grid;

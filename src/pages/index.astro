@@ -4,7 +4,6 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import LdapRecord from '../components/LdapRecord.astro';
 import RagChart from '../components/RagChart.astro';
-import SleepThumb from '../components/SleepThumb.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Icon from '../components/Icon.astro';
 import { profil, experiences, formations, competences } from '../data/profil';
@@ -79,8 +78,6 @@ const autres = projets.filter((p) => !p.data.enAvant);
                             <span class={`thumb ${projet.data.couvertureFormat === 'telephone' ? 'thumb-phone' : ''}`}>
                                 {projet.data.couverture ? (
                                     <Image src={projet.data.couverture} alt="" widths={[240, 480]} sizes="240px" />
-                                ) : projet.id === 'suivi-sommeil' ? (
-                                    <SleepThumb />
                                 ) : (
                                     <span class="thumb-empty" aria-hidden="true" />
                                 )}
