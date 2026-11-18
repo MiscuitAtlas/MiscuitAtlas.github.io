@@ -4,9 +4,10 @@ resume: Site de location de logements de vacances entre particuliers, en PHP san
 annee: '2024'
 contexte: Projet de 2e année de DEUST IOSI
 role: Conception et développement
-stack: [PHP 8, PDO, MySQL, SQLite, PHPUnit]
+stack: [PHP 8, PDO, MySQL, SQLite, PHPUnit, Docker]
 ordre: 3
 depot: https://github.com/MiscuitAtlas/vacances-connectees
+demo: https://vacances-connectees.onrender.com
 couverture: ../../assets/projets/vacances-connectees/accueil.jpg
 couvertureAlt: Page d’accueil avec les illustrations de quatre logements et le formulaire de recherche rempli pour la Bretagne du 19 au 26 décembre
 captures:
@@ -28,6 +29,8 @@ captures:
 
 Un site où les voyageurs cherchent un logement libre à leurs dates, le réservent et donnent leur avis après le séjour, et où les propriétaires publient leurs logements. Réalisé seul en fin de DEUST à partir d’un cahier des charges, puis réécrit en PHP orienté objet, sans framework : routeur, contrôleurs, gabarits et accès à la base sont écrits à la main.
 
+Dans la démo en ligne, chaque visiteur a sa propre copie du site, effacée au bout de deux heures. Les comptes de démonstration s’ouvrent en un clic, et une page affiche les emails que le site aurait envoyés : lien de mot de passe oublié, réservation reçue par le propriétaire. Elle est hébergée gratuitement sur Render : après un quart d’heure sans visite, le premier chargement prend environ une minute.
+
 ## Fonctionnalités
 
 - **Recherche** par destination, dates, voyageurs, chambres et prix, avec tri et pagination.
@@ -46,10 +49,11 @@ La première version, en HTML, JavaScript et PHP avec mysqli, comptait plusieurs
 - connexion bloquée 15 minutes après 5 échecs, même message et même temps de réponse pour un email inconnu ;
 - lien de réinitialisation à usage unique valable 30 minutes, dont seule l’empreinte SHA-256 est stockée, construit sans faire confiance à l’en-tête `Host` ;
 - photos vérifiées sur leur contenu et réencodées en WebP sous un nom aléatoire ;
+- sur la démo, une base par visiteur, créée seulement au premier formulaire valable : un robot sans cookie ni jeton n’en crée aucune ;
 - politique de sécurité du contenu stricte et aucune bibliothèque chargée depuis un CDN.
 
 ## Qualité
 
-- 53 tests PHPUnit : validation des séjours, recherche, chevauchement des réservations, sécurité des comptes, photos et droits d’accès, jusqu’aux parcours HTTP complets.
+- 63 tests PHPUnit : validation des séjours, recherche, chevauchement des réservations, sécurité des comptes, photos, droits d’accès et isolation des visiteurs de la démo, jusqu’aux parcours HTTP complets.
 - Code vérifié avec les règles PSR-12, pages auditées avec axe, interface adaptée au téléphone.
 - Fonctionne avec MySQL, MariaDB ou SQLite, et s’installe avec des données de démonstration.
