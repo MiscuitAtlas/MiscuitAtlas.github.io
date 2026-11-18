@@ -6,8 +6,8 @@ contexte: Projet de formation
 role: Conception et développement
 stack: [Vue.js 3, JavaScript, Bootstrap 5, API REST]
 ordre: 4
-depot: https://github.com/MiscuitAtlas/SuperHeros_VueJS
-demo: https://miscuitatlas.github.io/SuperHeros_VueJS/
+depot: https://github.com/MiscuitAtlas/superheros-vue
+demo: https://miscuitatlas.github.io/superheros-vue/
 couverture: ../../assets/projets/superheros/liste.png
 couvertureAlt: Liste des personnages avec leurs statistiques de pouvoir et les filtres par éditeur et par camp
 captures:

@@ -6,8 +6,8 @@ contexte: Projet de formation
 role: Conception et développement, front-end et back-end
 stack: [Vue.js 3, Vite, PHP, PDO, MySQL]
 ordre: 2
-depot: https://github.com/MiscuitAtlas/EscapeGame_VueJS
-demo: https://miscuitatlas.github.io/EscapeGame_VueJS/
+depot: https://github.com/MiscuitAtlas/escape-game-vue-php
+demo: https://miscuitatlas.github.io/escape-game-vue-php/
 couverture: ../../assets/projets/escape-game/bibliotheque.jpg
 couvertureAlt: La Bibliothèque Mystérieuse en cours de partie, avec le chronomètre, les indices et le classement de la salle
 captures:
