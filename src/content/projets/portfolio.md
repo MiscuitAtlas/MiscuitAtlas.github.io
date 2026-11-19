@@ -5,7 +5,7 @@ annee: '2026'
 contexte: Projet personnel
 role: Conception, design et développement
 stack: [Astro, TypeScript, CSS, GitHub Actions, GitHub Pages]
-ordre: 7
+ordre: 8
 depot: https://github.com/MiscuitAtlas/MiscuitAtlas.github.io
 couverture: ../../assets/projets/portfolio/accueil.png
 couvertureAlt: Page d’accueil du portfolio en mode sombre, avec la fiche de présentation au format annuaire
