@@ -5,7 +5,7 @@ annee: '2025'
 contexte: Projet de formation
 role: Conception et développement, front-end et back-end
 stack: [Vue.js 3, Vite, PHP, PDO, MySQL]
-ordre: 2
+ordre: 5
 depot: https://github.com/MiscuitAtlas/escape-game-vue-php
 demo: https://miscuitatlas.github.io/escape-game-vue-php/
 couverture: ../../assets/projets/escape-game/bibliotheque.jpg

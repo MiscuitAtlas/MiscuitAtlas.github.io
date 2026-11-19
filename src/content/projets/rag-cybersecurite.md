@@ -2,8 +2,8 @@
 titre: Assistant RAG cybersécurité – MITRE ATT&CK et NVD
 resume: Un assistant qui répond en français aux questions sur les CVE et les techniques MITRE ATT&CK, à partir des sources officielles et d’un modèle de langage exécuté en local.
 annee: '2026'
-contexte: Projet de Master 1 (P17), réalisé en binôme avec Bilal Medj
-role: Co-développeur
+contexte: Projet de Master 1 Cybersécurité, réalisé en binôme avec Bilal Medj
+role: Co-développeur, puis reprise en version 2
 stack: [Python, Sentence Transformers, FAISS, BM25, Ollama, Mistral, Streamlit]
 ordre: 1
 enAvant: true

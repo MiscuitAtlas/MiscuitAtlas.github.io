@@ -5,7 +5,7 @@ annee: '2025'
 contexte: Projet de licence professionnelle DLWM, réalisé en binôme avec Théo Defossez
 role: Interface et logique de jeu, puis réécriture complète
 stack: [Vue 3, Django, Channels, WebSocket, Python, pytest, Docker]
-ordre: 4
+ordre: 3
 depot: https://github.com/MiscuitAtlas/echecs-vue-django
 demo: https://echecs-vue-django.onrender.com
 couverture: ../../assets/projets/echecs/partie.jpg

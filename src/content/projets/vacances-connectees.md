@@ -5,7 +5,7 @@ annee: '2024'
 contexte: Projet de 2e année de DEUST IOSI
 role: Conception et développement
 stack: [PHP 8, PDO, MySQL, SQLite, PHPUnit, Docker]
-ordre: 3
+ordre: 2
 depot: https://github.com/MiscuitAtlas/vacances-connectees
 demo: https://vacances-connectees.onrender.com
 couverture: ../../assets/projets/vacances-connectees/accueil.jpg

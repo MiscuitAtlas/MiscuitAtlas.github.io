@@ -5,7 +5,7 @@ annee: '2026'
 contexte: Projet personnel
 role: Conception, design et développement
 stack: [Astro, TypeScript, CSS, GitHub Actions, GitHub Pages]
-ordre: 8
+ordre: 7
 depot: https://github.com/MiscuitAtlas/MiscuitAtlas.github.io
 couverture: ../../assets/projets/portfolio/accueil.png
 couvertureAlt: Page d’accueil du portfolio en mode sombre, avec la fiche de présentation au format annuaire
@@ -20,7 +20,7 @@ captures:
 
 ## Le projet
 
-Le site que vous lisez. Il présente mon parcours et mes projets, et applique les pratiques de sécurité que je défends, même pour un site vitrine.
+Le site que vous lisez. Il présente mon parcours et mes projets, et applique les pratiques de sécurité que je défends, même pour un site vitrine. Il remplace mon [premier portfolio](/projets/premier-portfolio/), codé avec Bootstrap.
 
 ## Choix techniques
 

@@ -5,7 +5,7 @@ annee: '2024'
 contexte: TP CakePHP, licence professionnelle DLWM
 role: Conception et développement
 stack: [CakePHP 5, PHP 8, MySQL, PHPUnit, Docker]
-ordre: 5
+ordre: 4
 depot: https://github.com/MiscuitAtlas/suivi-sommeil-cakephp
 demo: https://suivi-sommeil.onrender.com
 couverture: ../../assets/projets/suivi-sommeil/tableau-de-bord.jpg

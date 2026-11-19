@@ -5,7 +5,7 @@ annee: '2025'
 contexte: Projet de formation
 role: Conception et développement
 stack: [Vue.js 3, JavaScript, Bootstrap 5, API REST]
-ordre: 6
+ordre: 8
 depot: https://github.com/MiscuitAtlas/superheros-vue
 demo: https://miscuitatlas.github.io/superheros-vue/
 couverture: ../../assets/projets/superheros/liste.png
