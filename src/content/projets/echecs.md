@@ -4,9 +4,10 @@ resume: Jeu d’échecs en ligne entre amis, avec Vue 3 et Django Channels. Part
 annee: '2025'
 contexte: Projet de licence professionnelle DLWM, réalisé en binôme avec Théo Defossez
 role: Interface et logique de jeu, puis réécriture complète
-stack: [Vue 3, Django, Channels, WebSocket, Python, pytest]
+stack: [Vue 3, Django, Channels, WebSocket, Python, pytest, Docker]
 ordre: 4
 depot: https://github.com/MiscuitAtlas/echecs-vue-django
+demo: https://echecs-vue-django.onrender.com
 couverture: ../../assets/projets/echecs/partie.jpg
 couvertureAlt: Partie en cours vue des Blancs, avec les coups possibles du pion e4, la feuille de notation et la discussion
 captures:
@@ -24,6 +25,8 @@ captures:
 ## Le projet
 
 Deux joueurs s’affrontent chacun sur son écran : l’un crée la partie et envoie le code à l’autre, puis chaque coup s’affiche aussitôt chez l’adversaire. En licence, je m’occupais de l’interface Vue et de la logique de jeu, et Théo du serveur Django. Cette première version ne faisait pas encore jouer les deux joueurs ensemble : chacun jouait sur son propre échiquier. Je l’ai donc réécrite pour en faire un vrai jeu en réseau.
+
+Pour essayer la démo seul, il suffit de cliquer sur « Jouer sans compte », de créer une partie, puis d’ouvrir son lien dans une fenêtre de navigation privée pour jouer l’adversaire. Elle est hébergée gratuitement sur Render : après un quart d’heure sans visite, le premier chargement prend environ une minute.
 
 ## Fonctionnalités
 
