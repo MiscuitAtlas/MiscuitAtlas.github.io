@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>VacancesConnectées – Maxence Français</title><meta name="description" content="Site de location de logements de vacances entre particuliers, en PHP sans framework. Recherche par dates, réservation sans chevauchement, avis après le séjour et espace propriétaire."><link rel="canonical" href="https://miscuitatlas.github.io/projets/vacances-connectees/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="sitemap" href="/sitemap-index.xml"><meta name="theme-color" content="#0d1527"><meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Maxence Français"><meta property="og:title" content="VacancesConnectées – Maxence Français"><meta property="og:description" content="Site de location de logements de vacances entre particuliers, en PHP sans framework. Recherche par dates, réservation sans chevauchement, avis après le séjour et espace propriétaire."><meta property="og:url" content="https://miscuitatlas.github.io/projets/vacances-connectees/"><meta property="og:image" content="https://miscuitatlas.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><!-- Applique le thème choisi avant l'affichage pour éviter un flash. Son empreinte est ajoutée à la CSP par Astro. --><script>
+            try {
+                const theme = localStorage.getItem('theme');
+                if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+            } catch (e) {}
+        </script><meta http-equiv="content-security-policy" content="default-src 'self';img-src 'self' data:;font-src 'self';connect-src 'self' https://formspree.io;form-action https://formspree.io;base-uri 'self';object-src 'none';frame-src 'none';upgrade-insecure-requests; script-src 'self' 'sha256-MeWHH/vkpyzHlrKlIQPGW5mLYr+7h9Ab+880p6sNrdQ=' 'sha256-IgwDDuVoiCrGt/seH3gjNVup3ac72txZbiid6WdT6Xw=' 'sha256-xIb/Pa7FUshAu4ihwjchYcQpyCI8eS8kt40GpOAYCz8=' 'sha256-1BvDVWLr3QCC20uHhUDi27eDFVJpk1uMQJGIWKUks2I=' 'sha256-kmZE/W8I1iuTnl1b3yqzv9/DQZenPngd3NjSKMQl7y0=' 'sha256-Y8t0ntteBwH+PqGKUyjWW3CAk+BNJKSoQc0xZ68FjhM=' 'sha256-0O7iB6zr9x0r6X6eWYITC9V5q+yWCGAoFvcysBGbY9Q='; style-src 'self' ;"><link rel="stylesheet" href="/_astro/Base.BlxdZYUA.css"><link rel="stylesheet" href="/_astro/RagChart.D-0J0qOY.css"><link rel="stylesheet" href="/_astro/_id_.C3fneFG0.css"></head><body><a class="skip-link" href="#contenu">Aller au contenu</a><header class="site-header" data-astro-cid-nen7h5rs><div class="container bar" data-astro-cid-nen7h5rs><a class="wordmark" href="/" aria-label="Maxence Français, accueil" data-astro-cid-nen7h5rs>~/maxence-francais</a><nav aria-label="Navigation principale" data-astro-cid-nen7h5rs><ul data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/#projets" data-astro-cid-nen7h5rs>Projets</a></li><li data-astro-cid-nen7h5rs><a href="/#parcours" data-astro-cid-nen7h5rs>Parcours</a></li><li data-astro-cid-nen7h5rs><a href="/#competences" data-astro-cid-nen7h5rs>Compétences</a></li><li data-astro-cid-nen7h5rs><a href="/#contact" data-astro-cid-nen7h5rs>Contact</a></li></ul></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="Passer en mode clair" data-astro-cid-nen7h5rs><svg
+  class="icon icon-sun" aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="4" />
+  <path d="M12 2v2" />
+  <path d="M12 20v2" />
+  <path d="m4.93 4.93 1.41 1.41" />
+  <path d="m17.66 17.66 1.41 1.41" />
+  <path d="M2 12h2" />
+  <path d="M20 12h2" />
+  <path d="m6.34 17.66-1.41 1.41" />
+  <path d="m19.07 4.93-1.41 1.41" />
+</svg><svg
+  class="icon icon-moon" aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+</svg></button></div></header><script type="module">var e=document.documentElement,t=document.querySelector(`[data-theme-toggle]`),n=()=>e.dataset.theme===`light`?`light`:`dark`,r=()=>{t?.setAttribute(`aria-label`,n()===`light`?`Passer en mode sombre`:`Passer en mode clair`)};t?.addEventListener(`click`,()=>{let t=n()===`light`?`dark`:`light`;e.dataset.theme=t;try{localStorage.setItem(`theme`,t)}catch{}r()}),r();</script><main id="contenu"><article class="container case" data-astro-cid-f5yi4iwf><a class="back" href="/#projets" data-astro-cid-f5yi4iwf><svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m12 19-7-7 7-7" />
+  <path d="M19 12H5" />
+</svg> Tous les projets</a><header class="case-head" data-astro-cid-f5yi4iwf><h1 data-astro-cid-f5yi4iwf>VacancesConnectées</h1><p class="case-resume" data-astro-cid-f5yi4iwf>Site de location de logements de vacances entre particuliers, en PHP sans framework. Recherche par dates, réservation sans chevauchement, avis après le séjour et espace propriétaire.</p><dl class="facts" data-astro-cid-f5yi4iwf><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Contexte</dt><dd data-astro-cid-f5yi4iwf>Projet de 2e année de DEUST IOSI</dd></div><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Rôle</dt><dd data-astro-cid-f5yi4iwf>Conception et développement</dd></div><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Année</dt><dd data-astro-cid-f5yi4iwf>2024</dd></div><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Technologies</dt><dd data-astro-cid-f5yi4iwf><ul class="stack" data-astro-cid-f5yi4iwf><li data-astro-cid-f5yi4iwf>PHP 8</li><li data-astro-cid-f5yi4iwf>PDO</li><li data-astro-cid-f5yi4iwf>MySQL</li><li data-astro-cid-f5yi4iwf>SQLite</li><li data-astro-cid-f5yi4iwf>PHPUnit</li><li data-astro-cid-f5yi4iwf>Docker</li></ul></dd></div></dl><div class="btn-group" data-astro-cid-f5yi4iwf><a class="btn btn-primary" href="https://github.com/MiscuitAtlas/vacances-connectees" rel="noopener noreferrer" data-astro-cid-f5yi4iwf>Voir le code sur GitHub <svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 7h10v10" />
+  <path d="M7 17 17 7" />
+</svg></a><a class="btn btn-secondary" href="https://vacances-connectees.onrender.com" rel="noopener noreferrer" data-astro-cid-f5yi4iwf>Ouvrir la démo <svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 7h10v10" />
+  <path d="M7 17 17 7" />
+</svg></a></div></header><figure class="cover " data-astro-cid-f5yi4iwf><img src="/_astro/accueil.PGBu3LNt_nYqpG.webp" srcset="/_astro/accueil.PGBu3LNt_Z93pmx.webp 640w, /_astro/accueil.PGBu3LNt_Z1MCmUE.webp 1024w, /_astro/accueil.PGBu3LNt_Zb2QKU.webp 1440w" alt="Page d’accueil avec les illustrations de quatre logements et le formulaire de recherche rempli pour la Bretagne du 19 au 26 décembre" sizes="(max-width: 72rem) 100vw, 72rem" loading="eager" data-astro-cid-f5yi4iwf="true" decoding="async" width="1920" height="1350"></figure><div class="case-body" data-astro-cid-f5yi4iwf><div class="prose" data-astro-cid-f5yi4iwf><h2 id="le-projet">Le projet</h2>
+<p>Un site où les voyageurs cherchent un logement libre à leurs dates, le réservent et donnent leur avis après le séjour, et où les propriétaires publient leurs logements. Réalisé seul en fin de DEUST à partir d’un cahier des charges, puis réécrit en PHP orienté objet, sans framework : routeur, contrôleurs, gabarits et accès à la base sont écrits à la main.</p>
+<p>Dans la démo en ligne, chaque visiteur a sa propre copie du site, effacée au bout de deux heures. Les comptes de démonstration s’ouvrent en un clic, et une page affiche les emails que le site aurait envoyés : lien de mot de passe oublié, réservation reçue par le propriétaire. Elle est hébergée gratuitement sur Render : après un quart d’heure sans visite, le premier chargement prend environ une minute.</p>
+<h2 id="fonctionnalités">Fonctionnalités</h2>
+<ul>
+<li><strong>Recherche</strong> par destination, dates, voyageurs, chambres et prix, avec tri et pagination.</li>
+<li><strong>Fiche logement</strong> avec équipements, calendrier des disponibilités et avis. Les illustrations sont des SVG dessinés par le serveur selon le type de logement et son cadre.</li>
+<li><strong>Réservation</strong> confirmée tout de suite si les dates sont libres, annulation jusqu’à la veille, un avis par séjour après le départ.</li>
+<li><strong>Espace propriétaire</strong> : annonces avec photo, réservations à venir, email à chaque réservation ou annulation.</li>
+<li><strong>Comptes</strong> : inscription, profil, mot de passe oublié avec un lien envoyé par email.</li>
+</ul>
+<h2 id="sécurité">Sécurité</h2>
+<p>La première version, en HTML, JavaScript et PHP avec mysqli, comptait plusieurs failles : la page de mot de passe oublié changeait le mot de passe de n’importe quel compte à partir de sa seule adresse email, la recherche était vulnérable aux injections SQL, les annonces s’affichaient sans échappement et rien n’empêchait deux voyageurs de réserver les mêmes nuits. La version actuelle les corrige :</p>
+<ul>
+<li>requêtes préparées partout, texte de recherche échappé jusque dans <code>LIKE</code>, affichage échappé ;</li>
+<li>jeton CSRF sur chaque formulaire, contrôle d’accès sur chaque réservation et chaque logement ;</li>
+<li>dates revérifiées dans une transaction qui verrouille le logement, prix calculé par le serveur ;</li>
+<li>connexion bloquée 15 minutes après 5 échecs, même message et même temps de réponse pour un email inconnu ;</li>
+<li>lien de réinitialisation à usage unique valable 30 minutes, dont seule l’empreinte SHA-256 est stockée, construit sans faire confiance à l’en-tête <code>Host</code> ;</li>
+<li>photos vérifiées sur leur contenu et réencodées en WebP sous un nom aléatoire ;</li>
+<li>sur la démo, une base par visiteur, créée seulement au premier formulaire valable : un robot sans cookie ni jeton n’en crée aucune ;</li>
+<li>politique de sécurité du contenu stricte et aucune bibliothèque chargée depuis un CDN.</li>
+</ul>
+<h2 id="qualité">Qualité</h2>
+<ul>
+<li>63 tests PHPUnit : validation des séjours, recherche, chevauchement des réservations, sécurité des comptes, photos, droits d’accès et isolation des visiteurs de la démo, jusqu’aux parcours HTTP complets.</li>
+<li>Code vérifié avec les règles PSR-12, pages auditées avec axe, interface adaptée au téléphone.</li>
+<li>Fonctionne avec MySQL, MariaDB ou SQLite, et s’installe avec des données de démonstration.</li>
+</ul>
+</div></div><section class="gallery" aria-labelledby="titre-captures" data-astro-cid-f5yi4iwf><h2 id="titre-captures" data-astro-cid-f5yi4iwf>Captures d’écran</h2><div class="gallery-grid " data-astro-cid-f5yi4iwf><figure data-astro-cid-f5yi4iwf><a href="/_astro/fiche.BOrnOoSR_2qmF0j.webp" aria-label="Agrandir : Fiche d’un chalet à Chamonix avec l’encadré de réservation et le prix des sept nuits" data-astro-cid-f5yi4iwf><img src="/_astro/fiche.BOrnOoSR_2qmF0j.webp" srcset="/_astro/fiche.BOrnOoSR_ZtfgGn.webp 480w, /_astro/fiche.BOrnOoSR_c7Fl9.webp 960w" alt="Fiche d’un chalet à Chamonix avec l’encadré de réservation et le prix des sept nuits" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="1920" height="1350"></a><figcaption data-astro-cid-f5yi4iwf>La fiche d’un logement : le prix du séjour se calcule pendant la saisie des dates.</figcaption></figure><figure data-astro-cid-f5yi4iwf><a href="/_astro/calendrier.C0sCKCBA_FvJ0B.webp" aria-label="Agrandir : Calendrier des disponibilités sur deux mois, avec les nuits réservées barrées, et les avis des voyageurs" data-astro-cid-f5yi4iwf><img src="/_astro/calendrier.C0sCKCBA_FvJ0B.webp" srcset="/_astro/calendrier.C0sCKCBA_Z2kSNrf.webp 480w, /_astro/calendrier.C0sCKCBA_6O1Vi.webp 960w" alt="Calendrier des disponibilités sur deux mois, avec les nuits réservées barrées, et les avis des voyageurs" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="1920" height="1350"></a><figcaption data-astro-cid-f5yi4iwf>Le calendrier des disponibilités et les avis laissés après le séjour.</figcaption></figure><figure data-astro-cid-f5yi4iwf><a href="/_astro/recherche.n_l6y2NZ_1gOljN.webp" aria-label="Agrandir : Résultats de recherche avec huit logements disponibles du 19 au 26 décembre et les filtres à gauche" data-astro-cid-f5yi4iwf><img src="/_astro/recherche.n_l6y2NZ_1gOljN.webp" srcset="/_astro/recherche.n_l6y2NZ_njoPQ.webp 480w, /_astro/recherche.n_l6y2NZ_Z5TT4h.webp 960w" alt="Résultats de recherche avec huit logements disponibles du 19 au 26 décembre et les filtres à gauche" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="1920" height="1350"></a><figcaption data-astro-cid-f5yi4iwf>Avec des dates, la recherche ne montre que les logements libres.</figcaption></figure><figure data-astro-cid-f5yi4iwf><a href="/_astro/proprietaire.Ndmf0T7c_Z1ds0Ku.webp" aria-label="Agrandir : Espace propriétaire avec les réservations à venir et les annonces à modifier ou supprimer" data-astro-cid-f5yi4iwf><img src="/_astro/proprietaire.Ndmf0T7c_Z1ds0Ku.webp" srcset="/_astro/proprietaire.Ndmf0T7c_12nvGG.webp 480w, /_astro/proprietaire.Ndmf0T7c_Z9h8jr.webp 960w" alt="Espace propriétaire avec les réservations à venir et les annonces à modifier ou supprimer" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="1920" height="1350"></a><figcaption data-astro-cid-f5yi4iwf>L’espace propriétaire : réservations reçues et annonces.</figcaption></figure></div></section><nav class="pager" aria-label="Autres projets" data-astro-cid-f5yi4iwf><a class="pager-link" href="/projets/rag-cybersecurite/" data-astro-cid-f5yi4iwf><span class="pager-dir" data-astro-cid-f5yi4iwf><svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m15 18-6-6 6-6" />
+</svg> Projet précédent</span><span class="pager-title" data-astro-cid-f5yi4iwf>Assistant RAG cybersécurité – MITRE ATT&amp;CK et NVD</span></a><a class="pager-link next" href="/projets/echecs/" data-astro-cid-f5yi4iwf><span class="pager-dir" data-astro-cid-f5yi4iwf>Projet suivant <svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m9 18 6-6-6-6" />
+</svg></span><span class="pager-title" data-astro-cid-f5yi4iwf>Roque, échecs en ligne</span></a></nav></article></main><footer class="site-footer" data-astro-cid-jo6i4kqk><div class="container footer-inner" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>© 2026 Maxence Français</p><p class="muted" data-astro-cid-jo6i4kqk>Site statique construit avec Astro et hébergé sur GitHub Pages.<a href="https://github.com/MiscuitAtlas/MiscuitAtlas.github.io" rel="noopener noreferrer" data-astro-cid-jo6i4kqk>Voir le code source</a></p></div></footer></body></html>

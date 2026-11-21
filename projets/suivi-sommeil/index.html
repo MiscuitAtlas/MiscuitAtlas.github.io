@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>Suivi du sommeil – Maxence Français</title><meta name="description" content="Application web de suivi du sommeil par cycles de 90 minutes, avec bilan de la semaine, contrôle d’accès par ressource et menu administrable."><link rel="canonical" href="https://miscuitatlas.github.io/projets/suivi-sommeil/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="sitemap" href="/sitemap-index.xml"><meta name="theme-color" content="#0d1527"><meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Maxence Français"><meta property="og:title" content="Suivi du sommeil – Maxence Français"><meta property="og:description" content="Application web de suivi du sommeil par cycles de 90 minutes, avec bilan de la semaine, contrôle d’accès par ressource et menu administrable."><meta property="og:url" content="https://miscuitatlas.github.io/projets/suivi-sommeil/"><meta property="og:image" content="https://miscuitatlas.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><!-- Applique le thème choisi avant l'affichage pour éviter un flash. Son empreinte est ajoutée à la CSP par Astro. --><script>
+            try {
+                const theme = localStorage.getItem('theme');
+                if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+            } catch (e) {}
+        </script><meta http-equiv="content-security-policy" content="default-src 'self';img-src 'self' data:;font-src 'self';connect-src 'self' https://formspree.io;form-action https://formspree.io;base-uri 'self';object-src 'none';frame-src 'none';upgrade-insecure-requests; script-src 'self' 'sha256-MeWHH/vkpyzHlrKlIQPGW5mLYr+7h9Ab+880p6sNrdQ=' 'sha256-IgwDDuVoiCrGt/seH3gjNVup3ac72txZbiid6WdT6Xw=' 'sha256-xIb/Pa7FUshAu4ihwjchYcQpyCI8eS8kt40GpOAYCz8=' 'sha256-1BvDVWLr3QCC20uHhUDi27eDFVJpk1uMQJGIWKUks2I=' 'sha256-kmZE/W8I1iuTnl1b3yqzv9/DQZenPngd3NjSKMQl7y0=' 'sha256-Y8t0ntteBwH+PqGKUyjWW3CAk+BNJKSoQc0xZ68FjhM=' 'sha256-0O7iB6zr9x0r6X6eWYITC9V5q+yWCGAoFvcysBGbY9Q='; style-src 'self' ;"><link rel="stylesheet" href="/_astro/Base.BlxdZYUA.css"><link rel="stylesheet" href="/_astro/RagChart.D-0J0qOY.css"><link rel="stylesheet" href="/_astro/_id_.C3fneFG0.css"></head><body><a class="skip-link" href="#contenu">Aller au contenu</a><header class="site-header" data-astro-cid-nen7h5rs><div class="container bar" data-astro-cid-nen7h5rs><a class="wordmark" href="/" aria-label="Maxence Français, accueil" data-astro-cid-nen7h5rs>~/maxence-francais</a><nav aria-label="Navigation principale" data-astro-cid-nen7h5rs><ul data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/#projets" data-astro-cid-nen7h5rs>Projets</a></li><li data-astro-cid-nen7h5rs><a href="/#parcours" data-astro-cid-nen7h5rs>Parcours</a></li><li data-astro-cid-nen7h5rs><a href="/#competences" data-astro-cid-nen7h5rs>Compétences</a></li><li data-astro-cid-nen7h5rs><a href="/#contact" data-astro-cid-nen7h5rs>Contact</a></li></ul></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="Passer en mode clair" data-astro-cid-nen7h5rs><svg
+  class="icon icon-sun" aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="4" />
+  <path d="M12 2v2" />
+  <path d="M12 20v2" />
+  <path d="m4.93 4.93 1.41 1.41" />
+  <path d="m17.66 17.66 1.41 1.41" />
+  <path d="M2 12h2" />
+  <path d="M20 12h2" />
+  <path d="m6.34 17.66-1.41 1.41" />
+  <path d="m19.07 4.93-1.41 1.41" />
+</svg><svg
+  class="icon icon-moon" aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+</svg></button></div></header><script type="module">var e=document.documentElement,t=document.querySelector(`[data-theme-toggle]`),n=()=>e.dataset.theme===`light`?`light`:`dark`,r=()=>{t?.setAttribute(`aria-label`,n()===`light`?`Passer en mode sombre`:`Passer en mode clair`)};t?.addEventListener(`click`,()=>{let t=n()===`light`?`dark`:`light`;e.dataset.theme=t;try{localStorage.setItem(`theme`,t)}catch{}r()}),r();</script><main id="contenu"><article class="container case" data-astro-cid-f5yi4iwf><a class="back" href="/#projets" data-astro-cid-f5yi4iwf><svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m12 19-7-7 7-7" />
+  <path d="M19 12H5" />
+</svg> Tous les projets</a><header class="case-head" data-astro-cid-f5yi4iwf><h1 data-astro-cid-f5yi4iwf>Suivi du sommeil</h1><p class="case-resume" data-astro-cid-f5yi4iwf>Application web de suivi du sommeil par cycles de 90 minutes, avec bilan de la semaine, contrôle d’accès par ressource et menu administrable.</p><dl class="facts" data-astro-cid-f5yi4iwf><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Contexte</dt><dd data-astro-cid-f5yi4iwf>TP CakePHP, licence professionnelle DLWM</dd></div><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Rôle</dt><dd data-astro-cid-f5yi4iwf>Conception et développement</dd></div><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Année</dt><dd data-astro-cid-f5yi4iwf>2024</dd></div><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Technologies</dt><dd data-astro-cid-f5yi4iwf><ul class="stack" data-astro-cid-f5yi4iwf><li data-astro-cid-f5yi4iwf>CakePHP 5</li><li data-astro-cid-f5yi4iwf>PHP 8</li><li data-astro-cid-f5yi4iwf>MySQL</li><li data-astro-cid-f5yi4iwf>PHPUnit</li><li data-astro-cid-f5yi4iwf>Docker</li></ul></dd></div></dl><div class="btn-group" data-astro-cid-f5yi4iwf><a class="btn btn-primary" href="https://github.com/MiscuitAtlas/suivi-sommeil-cakephp" rel="noopener noreferrer" data-astro-cid-f5yi4iwf>Voir le code sur GitHub <svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 7h10v10" />
+  <path d="M7 17 17 7" />
+</svg></a><a class="btn btn-secondary" href="https://suivi-sommeil.onrender.com" rel="noopener noreferrer" data-astro-cid-f5yi4iwf>Ouvrir la démo <svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 7h10v10" />
+  <path d="M7 17 17 7" />
+</svg></a></div></header><figure class="cover " data-astro-cid-f5yi4iwf><img src="/_astro/tableau-de-bord.Cm6zp9Ga_2hc6Y7.webp" srcset="/_astro/tableau-de-bord.Cm6zp9Ga_1x7hPP.webp 640w, /_astro/tableau-de-bord.Cm6zp9Ga_Z278mdB.webp 1024w, /_astro/tableau-de-bord.Cm6zp9Ga_1bTKMQ.webp 1440w" alt="Tableau de bord avec la nuit du jour à 5 cycles, les objectifs de la semaine et les dernières nuits" sizes="(max-width: 72rem) 100vw, 72rem" loading="eager" data-astro-cid-f5yi4iwf="true" decoding="async" width="1920" height="1350"></figure><div class="case-body" data-astro-cid-f5yi4iwf><div class="prose" data-astro-cid-f5yi4iwf><h2 id="le-projet">Le projet</h2>
+<p>Chaque matin, l’utilisateur note l’heure du coucher et du lever. L’application calcule la durée et le nombre de cycles de 90 minutes, indique si le réveil est tombé en fin de cycle et suit deux objectifs sur la semaine : 42 cycles au total, et quatre jours d’affilée à cinq cycles ou plus. Réalisé lors d’un TP de licence professionnelle, puis réécrit sur CakePHP 5.4.</p>
+<p>La démo en ligne crée un compte par visiteur, avec trois semaines de nuits déjà saisies, supprimé au bout de deux heures. Elle est hébergée gratuitement sur Render : après un quart d’heure sans visite, le premier chargement prend environ une minute.</p>
+<h2 id="fonctionnalités">Fonctionnalités</h2>
+<ul>
+<li><strong>Saisie d’une nuit</strong> : heures, forme au réveil, siestes, sport et commentaire. Le formulaire propose les heures de réveil qui tombent en fin de cycle.</li>
+<li><strong>Tableau de bord</strong> et <strong>bilan de la semaine</strong> avec graphique, moyennes et navigation d’une semaine à l’autre.</li>
+<li><strong>Historique</strong> paginé et triable, une seule nuit par date.</li>
+<li><strong>Comptes</strong> : inscription, profil, changement de mot de passe, suppression du compte et de ses données.</li>
+<li><strong>Menu administrable</strong> : liens ajoutés, modifiés et réordonnés depuis l’application par les administrateurs.</li>
+</ul>
+<h2 id="sécurité">Sécurité</h2>
+<p>La première version contenait plusieurs failles : une page publique réinitialisait le mot de passe de n’importe quel compte et l’affichait à l’écran, toutes les nuits de tous les utilisateurs étaient visibles, et une nuit d’un autre compte se modifiait en changeant l’identifiant dans l’adresse. La version actuelle les corrige :</p>
+<ul>
+<li>contrôle d’accès par ressource avec le plugin Authorization, vérification obligatoire sur chaque requête ;</li>
+<li>propriétaire d’une nuit et rôle d’un compte jamais lus dans le formulaire, cycles recalculés par le serveur ;</li>
+<li>jeton CSRF sur chaque formulaire, actions sensibles uniquement en POST, ancien mot de passe exigé pour le changer ;</li>
+<li>politique de sécurité du contenu stricte, sans script ni style en ligne, et aucune bibliothèque chargée depuis un CDN ;</li>
+<li>aucun secret dans le dépôt : la configuration locale a été retirée de l’historique ;</li>
+<li>sur la démo, des comptes isolés par visiteur, un menu partagé en lecture seule, HSTS et cookies réservés au HTTPS.</li>
+</ul>
+<h2 id="qualité">Qualité</h2>
+<ul>
+<li>Calcul des cycles et du bilan dans des services indépendants du framework.</li>
+<li>82 tests PHPUnit : règles de calcul, validation, droits d’accès, démo en ligne et pile de middlewares.</li>
+<li>Code vérifié avec les règles de codage CakePHP, pages auditées avec axe, interface adaptée au téléphone.</li>
+</ul>
+</div></div><section class="gallery" aria-labelledby="titre-captures" data-astro-cid-f5yi4iwf><h2 id="titre-captures" data-astro-cid-f5yi4iwf>Captures d’écran</h2><div class="gallery-grid " data-astro-cid-f5yi4iwf><figure data-astro-cid-f5yi4iwf><a href="/_astro/semaine.DuVd_q8z_Z1BLCPu.webp" aria-label="Agrandir : Bilan d’une semaine avec les objectifs atteints, les moyennes et le graphique des cycles par nuit" data-astro-cid-f5yi4iwf><img src="/_astro/semaine.DuVd_q8z_Z1BLCPu.webp" srcset="/_astro/semaine.DuVd_q8z_2691xW.webp 480w, /_astro/semaine.DuVd_q8z_Z2mVljT.webp 960w" alt="Bilan d’une semaine avec les objectifs atteints, les moyennes et le graphique des cycles par nuit" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="1920" height="1350"></a><figcaption data-astro-cid-f5yi4iwf>Le bilan de la semaine : objectifs, moyennes et cycles par nuit.</figcaption></figure><figure data-astro-cid-f5yi4iwf><a href="/_astro/ajout.D1KhxD6r_Z1pbiBY.webp" aria-label="Agrandir : Formulaire d’ajout d’une nuit qui propose les heures de réveil en fin de cycle" data-astro-cid-f5yi4iwf><img src="/_astro/ajout.D1KhxD6r_Z1pbiBY.webp" srcset="/_astro/ajout.D1KhxD6r_ZUOASH.webp 480w, /_astro/ajout.D1KhxD6r_ZfrDQb.webp 960w" alt="Formulaire d’ajout d’une nuit qui propose les heures de réveil en fin de cycle" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="1920" height="1350"></a><figcaption data-astro-cid-f5yi4iwf>La saisie d’une nuit, avec les heures de réveil conseillées.</figcaption></figure><figure data-astro-cid-f5yi4iwf><a href="/_astro/menus.xaZw2P0A_Z18NSXh.webp" aria-label="Agrandir : Gestion du menu de navigation avec les boutons pour changer l’ordre des liens" data-astro-cid-f5yi4iwf><img src="/_astro/menus.xaZw2P0A_Z18NSXh.webp" srcset="/_astro/menus.xaZw2P0A_HKvFo.webp 480w, /_astro/menus.xaZw2P0A_1o8sHU.webp 960w" alt="Gestion du menu de navigation avec les boutons pour changer l’ordre des liens" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="1920" height="1350"></a><figcaption data-astro-cid-f5yi4iwf>Le menu de navigation, géré par les administrateurs.</figcaption></figure><figure data-astro-cid-f5yi4iwf><a href="/_astro/accueil.oi56xFe__1SHmTD.webp" aria-label="Agrandir : Page d’accueil qui présente le principe des cycles de sommeil" data-astro-cid-f5yi4iwf><img src="/_astro/accueil.oi56xFe__1SHmTD.webp" srcset="/_astro/accueil.oi56xFe__Z1e48k2.webp 480w, /_astro/accueil.oi56xFe__ZBWmnW.webp 960w" alt="Page d’accueil qui présente le principe des cycles de sommeil" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="1920" height="1350"></a><figcaption data-astro-cid-f5yi4iwf>La page d’accueil, pour les visiteurs.</figcaption></figure></div></section><nav class="pager" aria-label="Autres projets" data-astro-cid-f5yi4iwf><a class="pager-link" href="/projets/echecs/" data-astro-cid-f5yi4iwf><span class="pager-dir" data-astro-cid-f5yi4iwf><svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m15 18-6-6 6-6" />
+</svg> Projet précédent</span><span class="pager-title" data-astro-cid-f5yi4iwf>Roque, échecs en ligne</span></a><a class="pager-link next" href="/projets/escape-game/" data-astro-cid-f5yi4iwf><span class="pager-dir" data-astro-cid-f5yi4iwf>Projet suivant <svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m9 18 6-6-6-6" />
+</svg></span><span class="pager-title" data-astro-cid-f5yi4iwf>Escape Game en ligne</span></a></nav></article></main><footer class="site-footer" data-astro-cid-jo6i4kqk><div class="container footer-inner" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>© 2026 Maxence Français</p><p class="muted" data-astro-cid-jo6i4kqk>Site statique construit avec Astro et hébergé sur GitHub Pages.<a href="https://github.com/MiscuitAtlas/MiscuitAtlas.github.io" rel="noopener noreferrer" data-astro-cid-jo6i4kqk>Voir le code source</a></p></div></footer></body></html>

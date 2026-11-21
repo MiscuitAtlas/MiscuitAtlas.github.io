@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>Jeu du 2048 – Maxence Français</title><meta name="description" content="Le 2048 en Flutter, jouable dans le navigateur, avec trois modes de fusion, des grilles jusqu’à 8 × 8, l’annulation des coups et des records par type de partie."><link rel="canonical" href="https://miscuitatlas.github.io/projets/jeu-2048/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="sitemap" href="/sitemap-index.xml"><meta name="theme-color" content="#0d1527"><meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Maxence Français"><meta property="og:title" content="Jeu du 2048 – Maxence Français"><meta property="og:description" content="Le 2048 en Flutter, jouable dans le navigateur, avec trois modes de fusion, des grilles jusqu’à 8 × 8, l’annulation des coups et des records par type de partie."><meta property="og:url" content="https://miscuitatlas.github.io/projets/jeu-2048/"><meta property="og:image" content="https://miscuitatlas.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><!-- Applique le thème choisi avant l'affichage pour éviter un flash. Son empreinte est ajoutée à la CSP par Astro. --><script>
+            try {
+                const theme = localStorage.getItem('theme');
+                if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+            } catch (e) {}
+        </script><meta http-equiv="content-security-policy" content="default-src 'self';img-src 'self' data:;font-src 'self';connect-src 'self' https://formspree.io;form-action https://formspree.io;base-uri 'self';object-src 'none';frame-src 'none';upgrade-insecure-requests; script-src 'self' 'sha256-MeWHH/vkpyzHlrKlIQPGW5mLYr+7h9Ab+880p6sNrdQ=' 'sha256-IgwDDuVoiCrGt/seH3gjNVup3ac72txZbiid6WdT6Xw=' 'sha256-xIb/Pa7FUshAu4ihwjchYcQpyCI8eS8kt40GpOAYCz8=' 'sha256-1BvDVWLr3QCC20uHhUDi27eDFVJpk1uMQJGIWKUks2I=' 'sha256-kmZE/W8I1iuTnl1b3yqzv9/DQZenPngd3NjSKMQl7y0=' 'sha256-Y8t0ntteBwH+PqGKUyjWW3CAk+BNJKSoQc0xZ68FjhM=' 'sha256-0O7iB6zr9x0r6X6eWYITC9V5q+yWCGAoFvcysBGbY9Q='; style-src 'self' ;"><link rel="stylesheet" href="/_astro/Base.BlxdZYUA.css"><link rel="stylesheet" href="/_astro/RagChart.D-0J0qOY.css"><link rel="stylesheet" href="/_astro/_id_.C3fneFG0.css"></head><body><a class="skip-link" href="#contenu">Aller au contenu</a><header class="site-header" data-astro-cid-nen7h5rs><div class="container bar" data-astro-cid-nen7h5rs><a class="wordmark" href="/" aria-label="Maxence Français, accueil" data-astro-cid-nen7h5rs>~/maxence-francais</a><nav aria-label="Navigation principale" data-astro-cid-nen7h5rs><ul data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/#projets" data-astro-cid-nen7h5rs>Projets</a></li><li data-astro-cid-nen7h5rs><a href="/#parcours" data-astro-cid-nen7h5rs>Parcours</a></li><li data-astro-cid-nen7h5rs><a href="/#competences" data-astro-cid-nen7h5rs>Compétences</a></li><li data-astro-cid-nen7h5rs><a href="/#contact" data-astro-cid-nen7h5rs>Contact</a></li></ul></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="Passer en mode clair" data-astro-cid-nen7h5rs><svg
+  class="icon icon-sun" aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="4" />
+  <path d="M12 2v2" />
+  <path d="M12 20v2" />
+  <path d="m4.93 4.93 1.41 1.41" />
+  <path d="m17.66 17.66 1.41 1.41" />
+  <path d="M2 12h2" />
+  <path d="M20 12h2" />
+  <path d="m6.34 17.66-1.41 1.41" />
+  <path d="m19.07 4.93-1.41 1.41" />
+</svg><svg
+  class="icon icon-moon" aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+</svg></button></div></header><script type="module">var e=document.documentElement,t=document.querySelector(`[data-theme-toggle]`),n=()=>e.dataset.theme===`light`?`light`:`dark`,r=()=>{t?.setAttribute(`aria-label`,n()===`light`?`Passer en mode sombre`:`Passer en mode clair`)};t?.addEventListener(`click`,()=>{let t=n()===`light`?`dark`:`light`;e.dataset.theme=t;try{localStorage.setItem(`theme`,t)}catch{}r()}),r();</script><main id="contenu"><article class="container case" data-astro-cid-f5yi4iwf><a class="back" href="/#projets" data-astro-cid-f5yi4iwf><svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m12 19-7-7 7-7" />
+  <path d="M19 12H5" />
+</svg> Tous les projets</a><header class="case-head" data-astro-cid-f5yi4iwf><h1 data-astro-cid-f5yi4iwf>Jeu du 2048</h1><p class="case-resume" data-astro-cid-f5yi4iwf>Le 2048 en Flutter, jouable dans le navigateur, avec trois modes de fusion, des grilles jusqu’à 8 × 8, l’annulation des coups et des records par type de partie.</p><dl class="facts" data-astro-cid-f5yi4iwf><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Contexte</dt><dd data-astro-cid-f5yi4iwf>TP Flutter, licence professionnelle DLWM</dd></div><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Rôle</dt><dd data-astro-cid-f5yi4iwf>Conception et développement</dd></div><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Année</dt><dd data-astro-cid-f5yi4iwf>2024</dd></div><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Technologies</dt><dd data-astro-cid-f5yi4iwf><ul class="stack" data-astro-cid-f5yi4iwf><li data-astro-cid-f5yi4iwf>Flutter</li><li data-astro-cid-f5yi4iwf>Dart</li><li data-astro-cid-f5yi4iwf>CustomPainter</li><li data-astro-cid-f5yi4iwf>SharedPreferences</li></ul></dd></div></dl><div class="btn-group" data-astro-cid-f5yi4iwf><a class="btn btn-primary" href="https://github.com/MiscuitAtlas/jeu-2048-flutter" rel="noopener noreferrer" data-astro-cid-f5yi4iwf>Voir le code sur GitHub <svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 7h10v10" />
+  <path d="M7 17 17 7" />
+</svg></a><a class="btn btn-secondary" href="https://miscuitatlas.github.io/jeu-2048-flutter/" rel="noopener noreferrer" data-astro-cid-f5yi4iwf>Ouvrir la démo <svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 7h10v10" />
+  <path d="M7 17 17 7" />
+</svg></a></div></header><figure class="cover cover-phone" data-astro-cid-f5yi4iwf><img src="/_astro/partie.DxPd6eSB_Z1HLEfe.webp" srcset="/_astro/partie.DxPd6eSB_Z2mtsAy.webp 640w, /_astro/partie.DxPd6eSB_Z1HLEfe.webp 780w" alt="Partie de 2048 en cours sur téléphone, avec le score, le record et le nombre de coups" sizes="(max-width: 72rem) 100vw, 72rem" loading="eager" data-astro-cid-f5yi4iwf="true" decoding="async" width="780" height="1688"></figure><div class="case-body" data-astro-cid-f5yi4iwf><div class="prose" data-astro-cid-f5yi4iwf><h2 id="le-projet">Le projet</h2>
+<p>Le jeu 2048 en Flutter : faire glisser les tuiles pour fusionner les nombres identiques jusqu’à atteindre l’objectif. Réalisé lors d’un TP de licence professionnelle, puis repris en entier : il ne restait de la première version qu’une partie du code.</p>
+<h2 id="fonctionnalités">Fonctionnalités</h2>
+<ul>
+<li><strong>Trois modes de fusion</strong> : classique, cascade (la variante de l’énoncé, où une tuile fusionnée peut fusionner à nouveau) et express.</li>
+<li><strong>Objectifs</strong> de 256 à 8192 et <strong>grilles</strong> de 4 × 4 à 8 × 8, avec une grille de départ aléatoire en option.</li>
+<li><strong>Commandes</strong> au doigt ou au clavier, annulation des 20 derniers coups, possibilité de continuer après la victoire.</li>
+<li><strong>Records</strong> par type de partie : meilleur score et plus petit nombre de coups pour atteindre l’objectif.</li>
+<li>Reprise automatique de la partie en cours, thème clair ou sombre, affichage en portrait comme en paysage.</li>
+</ul>
+<h2 id="points-techniques">Points techniques</h2>
+<ul>
+<li>Logique du jeu en Dart pur, séparée de l’interface : une grille immuable et une seule fonction de fusion pour les quatre directions et les trois modes.</li>
+<li>Grille dessinée et animée avec un <code>CustomPainter</code>, décrite ligne par ligne aux lecteurs d’écran.</li>
+<li>52 tests unitaires et tests de widgets, dont les exemples de l’énoncé du TP et l’affichage sur petit écran ou avec un texte agrandi.</li>
+<li>Version web publiée sur GitHub Pages, sans requête vers un site tiers.</li>
+</ul>
+</div></div><section class="gallery" aria-labelledby="titre-captures" data-astro-cid-f5yi4iwf><h2 id="titre-captures" data-astro-cid-f5yi4iwf>Captures d’écran</h2><div class="gallery-grid gallery-phone" data-astro-cid-f5yi4iwf><figure data-astro-cid-f5yi4iwf><a href="/_astro/victoire.BC8KUO9O_Z7Bszl.webp" aria-label="Agrandir : Objectif 2048 atteint, avec le choix de continuer ou de recommencer" data-astro-cid-f5yi4iwf><img src="/_astro/victoire.BC8KUO9O_Z7Bszl.webp" srcset="/_astro/victoire.BC8KUO9O_1B202v.webp 480w, /_astro/victoire.BC8KUO9O_Z7Bszl.webp 780w" alt="Objectif 2048 atteint, avec le choix de continuer ou de recommencer" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="780" height="1688"></a><figcaption data-astro-cid-f5yi4iwf>L’objectif atteint, avec le choix de continuer la partie.</figcaption></figure><figure data-astro-cid-f5yi4iwf><a href="/_astro/grille-8x8.4cxFld2K_Z2OzcK.webp" aria-label="Agrandir : Grille 8 × 8 en mode cascade, avec les couleurs Océan et le thème sombre" data-astro-cid-f5yi4iwf><img src="/_astro/grille-8x8.4cxFld2K_Z2OzcK.webp" srcset="/_astro/grille-8x8.4cxFld2K_23l9NE.webp 480w, /_astro/grille-8x8.4cxFld2K_Z2OzcK.webp 780w" alt="Grille 8 × 8 en mode cascade, avec les couleurs Océan et le thème sombre" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="780" height="1688"></a><figcaption data-astro-cid-f5yi4iwf>Une grille 8 × 8 en mode cascade, couleurs Océan et thème sombre.</figcaption></figure><figure data-astro-cid-f5yi4iwf><a href="/_astro/reglages.C4TSzVTL_Z18nPLn.webp" aria-label="Agrandir : Écran des réglages avec l’objectif, la taille de la grille et les modes de fusion" data-astro-cid-f5yi4iwf><img src="/_astro/reglages.C4TSzVTL_Z18nPLn.webp" srcset="/_astro/reglages.C4TSzVTL_AfBPt.webp 480w, /_astro/reglages.C4TSzVTL_Z18nPLn.webp 780w" alt="Écran des réglages avec l’objectif, la taille de la grille et les modes de fusion" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="780" height="1688"></a><figcaption data-astro-cid-f5yi4iwf>Les réglages de la partie.</figcaption></figure></div></section><nav class="pager" aria-label="Autres projets" data-astro-cid-f5yi4iwf><a class="pager-link" href="/projets/escape-game/" data-astro-cid-f5yi4iwf><span class="pager-dir" data-astro-cid-f5yi4iwf><svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m15 18-6-6 6-6" />
+</svg> Projet précédent</span><span class="pager-title" data-astro-cid-f5yi4iwf>Escape Game en ligne</span></a><a class="pager-link next" href="/projets/portfolio/" data-astro-cid-f5yi4iwf><span class="pager-dir" data-astro-cid-f5yi4iwf>Projet suivant <svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m9 18 6-6-6-6" />
+</svg></span><span class="pager-title" data-astro-cid-f5yi4iwf>Ce portfolio</span></a></nav></article></main><footer class="site-footer" data-astro-cid-jo6i4kqk><div class="container footer-inner" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>© 2026 Maxence Français</p><p class="muted" data-astro-cid-jo6i4kqk>Site statique construit avec Astro et hébergé sur GitHub Pages.<a href="https://github.com/MiscuitAtlas/MiscuitAtlas.github.io" rel="noopener noreferrer" data-astro-cid-jo6i4kqk>Voir le code source</a></p></div></footer></body></html>

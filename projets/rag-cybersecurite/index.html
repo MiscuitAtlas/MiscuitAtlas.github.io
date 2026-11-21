@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>Assistant RAG cybersécurité – MITRE ATT&amp;CK et NVD – Maxence Français</title><meta name="description" content="Un assistant qui répond en français aux questions sur les CVE et les techniques MITRE ATT&amp;CK, à partir des sources officielles et d’un modèle de langage exécuté en local."><link rel="canonical" href="https://miscuitatlas.github.io/projets/rag-cybersecurite/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="sitemap" href="/sitemap-index.xml"><meta name="theme-color" content="#0d1527"><meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Maxence Français"><meta property="og:title" content="Assistant RAG cybersécurité – MITRE ATT&amp;CK et NVD – Maxence Français"><meta property="og:description" content="Un assistant qui répond en français aux questions sur les CVE et les techniques MITRE ATT&amp;CK, à partir des sources officielles et d’un modèle de langage exécuté en local."><meta property="og:url" content="https://miscuitatlas.github.io/projets/rag-cybersecurite/"><meta property="og:image" content="https://miscuitatlas.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><!-- Applique le thème choisi avant l'affichage pour éviter un flash. Son empreinte est ajoutée à la CSP par Astro. --><script>
+            try {
+                const theme = localStorage.getItem('theme');
+                if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+            } catch (e) {}
+        </script><meta http-equiv="content-security-policy" content="default-src 'self';img-src 'self' data:;font-src 'self';connect-src 'self' https://formspree.io;form-action https://formspree.io;base-uri 'self';object-src 'none';frame-src 'none';upgrade-insecure-requests; script-src 'self' 'sha256-MeWHH/vkpyzHlrKlIQPGW5mLYr+7h9Ab+880p6sNrdQ=' 'sha256-IgwDDuVoiCrGt/seH3gjNVup3ac72txZbiid6WdT6Xw=' 'sha256-xIb/Pa7FUshAu4ihwjchYcQpyCI8eS8kt40GpOAYCz8=' 'sha256-1BvDVWLr3QCC20uHhUDi27eDFVJpk1uMQJGIWKUks2I=' 'sha256-kmZE/W8I1iuTnl1b3yqzv9/DQZenPngd3NjSKMQl7y0=' 'sha256-Y8t0ntteBwH+PqGKUyjWW3CAk+BNJKSoQc0xZ68FjhM=' 'sha256-0O7iB6zr9x0r6X6eWYITC9V5q+yWCGAoFvcysBGbY9Q='; style-src 'self' ;"><link rel="stylesheet" href="/_astro/Base.BlxdZYUA.css"><link rel="stylesheet" href="/_astro/RagChart.D-0J0qOY.css"><link rel="stylesheet" href="/_astro/_id_.C3fneFG0.css"></head><body><a class="skip-link" href="#contenu">Aller au contenu</a><header class="site-header" data-astro-cid-nen7h5rs><div class="container bar" data-astro-cid-nen7h5rs><a class="wordmark" href="/" aria-label="Maxence Français, accueil" data-astro-cid-nen7h5rs>~/maxence-francais</a><nav aria-label="Navigation principale" data-astro-cid-nen7h5rs><ul data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/#projets" data-astro-cid-nen7h5rs>Projets</a></li><li data-astro-cid-nen7h5rs><a href="/#parcours" data-astro-cid-nen7h5rs>Parcours</a></li><li data-astro-cid-nen7h5rs><a href="/#competences" data-astro-cid-nen7h5rs>Compétences</a></li><li data-astro-cid-nen7h5rs><a href="/#contact" data-astro-cid-nen7h5rs>Contact</a></li></ul></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="Passer en mode clair" data-astro-cid-nen7h5rs><svg
+  class="icon icon-sun" aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="4" />
+  <path d="M12 2v2" />
+  <path d="M12 20v2" />
+  <path d="m4.93 4.93 1.41 1.41" />
+  <path d="m17.66 17.66 1.41 1.41" />
+  <path d="M2 12h2" />
+  <path d="M20 12h2" />
+  <path d="m6.34 17.66-1.41 1.41" />
+  <path d="m19.07 4.93-1.41 1.41" />
+</svg><svg
+  class="icon icon-moon" aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+</svg></button></div></header><script type="module">var e=document.documentElement,t=document.querySelector(`[data-theme-toggle]`),n=()=>e.dataset.theme===`light`?`light`:`dark`,r=()=>{t?.setAttribute(`aria-label`,n()===`light`?`Passer en mode sombre`:`Passer en mode clair`)};t?.addEventListener(`click`,()=>{let t=n()===`light`?`dark`:`light`;e.dataset.theme=t;try{localStorage.setItem(`theme`,t)}catch{}r()}),r();</script><main id="contenu"><article class="container case" data-astro-cid-f5yi4iwf><a class="back" href="/#projets" data-astro-cid-f5yi4iwf><svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m12 19-7-7 7-7" />
+  <path d="M19 12H5" />
+</svg> Tous les projets</a><header class="case-head" data-astro-cid-f5yi4iwf><h1 data-astro-cid-f5yi4iwf>Assistant RAG cybersécurité – MITRE ATT&amp;CK et NVD</h1><p class="case-resume" data-astro-cid-f5yi4iwf>Un assistant qui répond en français aux questions sur les CVE et les techniques MITRE ATT&amp;CK, à partir des sources officielles et d’un modèle de langage exécuté en local.</p><dl class="facts" data-astro-cid-f5yi4iwf><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Contexte</dt><dd data-astro-cid-f5yi4iwf>Projet de Master 1 Cybersécurité, réalisé en binôme avec Bilal Medj</dd></div><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Rôle</dt><dd data-astro-cid-f5yi4iwf>Co-développeur, puis reprise en version 2</dd></div><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Année</dt><dd data-astro-cid-f5yi4iwf>2026</dd></div><div data-astro-cid-f5yi4iwf><dt data-astro-cid-f5yi4iwf>Technologies</dt><dd data-astro-cid-f5yi4iwf><ul class="stack" data-astro-cid-f5yi4iwf><li data-astro-cid-f5yi4iwf>Python</li><li data-astro-cid-f5yi4iwf>Sentence Transformers</li><li data-astro-cid-f5yi4iwf>FAISS</li><li data-astro-cid-f5yi4iwf>BM25</li><li data-astro-cid-f5yi4iwf>Ollama</li><li data-astro-cid-f5yi4iwf>Mistral</li><li data-astro-cid-f5yi4iwf>Streamlit</li></ul></dd></div></dl><div class="btn-group" data-astro-cid-f5yi4iwf><a class="btn btn-primary" href="https://github.com/MiscuitAtlas/rag-cyber-mitre-nvd" rel="noopener noreferrer" data-astro-cid-f5yi4iwf>Voir le code sur GitHub <svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 7h10v10" />
+  <path d="M7 17 17 7" />
+</svg></a></div></header><figure class="cover " data-astro-cid-f5yi4iwf><img src="/_astro/interface.71PIrsKt_1h8yKL.webp" srcset="/_astro/interface.71PIrsKt_U3Qqq.webp 640w, /_astro/interface.71PIrsKt_1tBlav.webp 1024w, /_astro/interface.71PIrsKt_ZXeFSK.webp 1440w" alt="Interface Streamlit de l’assistant, avec une question, la réponse générée et les sources utilisées" sizes="(max-width: 72rem) 100vw, 72rem" loading="eager" data-astro-cid-f5yi4iwf="true" decoding="async" width="2000" height="1125"></figure><div class="case-body" data-astro-cid-f5yi4iwf><div class="chart-block" data-astro-cid-f5yi4iwf><figure class="rag-chart" data-astro-cid-fbuelxlx><figcaption data-astro-cid-fbuelxlx>Couverture moyenne des éléments attendus, sur 20 questions</figcaption><dl data-astro-cid-fbuelxlx><div class="row" data-astro-cid-fbuelxlx><dt data-astro-cid-fbuelxlx>RAG</dt><dd data-astro-cid-fbuelxlx><svg viewBox="0 0 100 8" preserveAspectRatio="none" aria-hidden="true" data-astro-cid-fbuelxlx><rect class="track" x="0" y="0" width="100" height="8" rx="1" data-astro-cid-fbuelxlx></rect><rect class="bar-rag" x="0" y="0" width="97.5" height="8" rx="1" data-astro-cid-fbuelxlx></rect></svg><span class="value" data-astro-cid-fbuelxlx>0,975</span></dd></div><div class="row" data-astro-cid-fbuelxlx><dt data-astro-cid-fbuelxlx>Modèle seul</dt><dd data-astro-cid-fbuelxlx><svg viewBox="0 0 100 8" preserveAspectRatio="none" aria-hidden="true" data-astro-cid-fbuelxlx><rect class="track" x="0" y="0" width="100" height="8" rx="1" data-astro-cid-fbuelxlx></rect><rect class="bar-llm" x="0" y="0" width="37.5" height="8" rx="1" data-astro-cid-fbuelxlx></rect></svg><span class="value" data-astro-cid-fbuelxlx>0,375</span></dd></div></dl></figure></div><div class="prose" data-astro-cid-f5yi4iwf><h2 id="le-problème">Le problème</h2>
+<p>Interrogé seul, un modèle de langage répond de façon approximative sur des données de sécurité précises. Il confond les identifiants, invente des scores CVSS et ne connaît pas les vulnérabilités publiées après son entraînement. À une question comme « Qu’est-ce que CVE-2025-14037 ? », il ne peut que deviner.</p>
+<p>L’objectif était de construire un assistant <strong>local</strong> qui retrouve d’abord le bon contexte dans les sources officielles, puis s’appuie dessus pour répondre, en citant ses sources.</p>
+<h2 id="ce-que-nous-avons-construit">Ce que nous avons construit</h2>
+<p><strong>Un corpus issu des sources officielles.</strong> 1 948 CVE tirées du flux récent de la National Vulnerability Database et 691 techniques et sous-techniques de MITRE ATT&amp;CK Enterprise (format STIX). Nous avons nettoyé ces données pour ne garder que les champs utiles (identifiant, description, sévérité, score CVSS, CWE, plateformes), puis les avons converties en 2 639 documents texte, découpés en 3 926 extraits de 120 mots avec un chevauchement de 30 mots.</p>
+<p><strong>Une recherche en trois modes.</strong></p>
+<ul>
+<li><strong>Recherche exacte</strong> : quand la question contient un identifiant (<code>CVE-2025-14037</code>, <code>T1053.005</code>), le système va directement chercher l’entrée correspondante. Si l’identifiant n’est pas dans la base, il le dit au lieu de répondre avec une entrée voisine.</li>
+<li><strong>Recherche vectorielle</strong> : les extraits sont encodés avec le modèle <code>all-MiniLM-L6-v2</code> et indexés dans FAISS, pour les questions formulées librement.</li>
+<li><strong>Recherche hybride</strong> : BM25 (mots-clés) et FAISS (sens) combinés, plus robuste sur les requêtes courtes.</li>
+</ul>
+<p><strong>Une génération 100 % locale.</strong> Mistral, exécuté avec Ollama, rédige la réponse en français à partir des extraits retrouvés et cite ses sources. Aucune donnée ne sort de la machine. Une interface Streamlit permet de discuter avec l’assistant et d’afficher les extraits utilisés.</p>
+<p><strong>Une deuxième version plus solide.</strong> Après la soutenance, j’ai repris le code en un paquet Python testé (70 tests) :</p>
+<ul>
+<li>la détection des techniques, que la version 1 ne récupérait pas depuis le passage à ATT&amp;CK v18 (stratégies de détection, journaux à surveiller), ainsi que les tactiques et les mesures d’atténuation ;</li>
+<li>les noms des faiblesses CWE ;</li>
+<li>un prompt protégé contre l’injection via le contenu des CVE ;</li>
+<li>une évaluation plus complète.</li>
+</ul>
+<h2 id="évaluation">Évaluation</h2>
+<p>Le système RAG est comparé au même modèle utilisé seul, sur 20 questions portant sur MITRE ATT&amp;CK et sur des CVE précises. Pour chaque question, une liste d’éléments attendus (identifiant, nom, sévérité, CWE) permet de mesurer la couverture de la réponse. S’y ajoutent la fidélité au contexte et le taux d’hallucination.</p>
+<table>
+<thead>
+<tr>
+<th>Version 2</th>
+<th>RAG</th>
+<th>Modèle seul</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Couverture des éléments attendus</td>
+<td>0,975</td>
+<td>0,375</td>
+</tr>
+<tr>
+<td>Informations absentes de la question retrouvées</td>
+<td>24 sur 25</td>
+<td>0 sur 25</td>
+</tr>
+<tr>
+<td>Fidélité au contexte</td>
+<td>1,00</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Taux d’hallucination</td>
+<td>0,05</td>
+<td>0,50</td>
+</tr>
+</tbody>
+</table>
+<p>Le modèle seul se trompe sur toutes les questions ATT&amp;CK : six fois, il décrit la technique comme « l’utilisation de PowerShell ». Sur les CVE, il refuse de répondre en affirmant qu’elles n’existent pas. Le RAG ne fait qu’une erreur mesurée : il répond T1053 au lieu de T1053.005, alors que la bonne fiche était en tête des extraits.</p>
+<p>La première version obtenait 0,85 contre 0,40 sur un corpus plus grand, avec une mesure moins stricte.</p>
+<h2 id="limites">Limites</h2>
+<p>Les métriques reposent sur des éléments vérifiables (identifiants, noms, scores) : en relisant les réponses, j’ai trouvé une erreur qu’elles ne voient pas, une CWE mal nommée. Le jeu de 20 questions reste réduit, et le corpus ne couvre que les CVE récentes. Les pistes suivantes sont un reranking des résultats et une image Docker pour faciliter le déploiement.</p>
+<h2 id="ce-que-jen-retiens">Ce que j’en retiens</h2>
+<p>La qualité d’un RAG dépend autant de la recherche que du modèle. L’ajout de la recherche exacte sur les identifiants a corrigé la principale faiblesse de la recherche purement vectorielle, qui ramenait parfois une CVE proche au lieu de la bonne.</p>
+<p>Une métrique mal définie peut aussi tromper. Ma première mesure des hallucinations ne regardait que les identifiants et les scores. Elle donnait 0 au modèle seul, alors qu’il invente le nom de toutes les techniques : c’est en relisant les réponses que je l’ai vu et corrigé.</p>
+<p>Le <a href="https://github.com/MiscuitAtlas/rag-cyber-mitre-nvd/blob/main/docs/Compte_rendu_P17.pdf">compte rendu complet</a> (28 pages) détaille la méthode et l’évaluation.</p>
+</div></div><section class="gallery" aria-labelledby="titre-captures" data-astro-cid-f5yi4iwf><h2 id="titre-captures" data-astro-cid-f5yi4iwf>Captures d’écran</h2><div class="gallery-grid " data-astro-cid-f5yi4iwf><figure data-astro-cid-f5yi4iwf><a href="/_astro/architecture.B6x1bDgW_22ijzN.webp" aria-label="Agrandir : Schéma du pipeline, des données sources jusqu’à la réponse de Mistral" data-astro-cid-f5yi4iwf><img src="/_astro/architecture.B6x1bDgW_Z1QDkxS.webp" srcset="/_astro/architecture.B6x1bDgW_1IYViX.webp 480w, /_astro/architecture.B6x1bDgW_Z1gwpTL.webp 960w" alt="Schéma du pipeline, des données sources jusqu’à la réponse de Mistral" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="2000" height="1125"></a><figcaption data-astro-cid-f5yi4iwf>L’architecture, des données sources jusqu’à la réponse générée.</figcaption></figure><figure data-astro-cid-f5yi4iwf><a href="/_astro/pipeline-donnees.DFEZeipH_ZhXnKQ.webp" aria-label="Agrandir : Préparation du corpus, de 1 948 CVE et 691 techniques à 3 926 extraits indexés" data-astro-cid-f5yi4iwf><img src="/_astro/pipeline-donnees.DFEZeipH_Zcip5t.webp" srcset="/_astro/pipeline-donnees.DFEZeipH_2sAJFh.webp 480w, /_astro/pipeline-donnees.DFEZeipH_Z2pYdFl.webp 960w" alt="Préparation du corpus, de 1 948 CVE et 691 techniques à 3 926 extraits indexés" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="2000" height="1125"></a><figcaption data-astro-cid-f5yi4iwf>La préparation du corpus.</figcaption></figure><figure data-astro-cid-f5yi4iwf><a href="/_astro/recherche.llDmH8Ub_1eMuLm.webp" aria-label="Agrandir : Comparaison des trois modes de recherche, exact, vectoriel et hybride" data-astro-cid-f5yi4iwf><img src="/_astro/recherche.llDmH8Ub_1kGXT5.webp" srcset="/_astro/recherche.llDmH8Ub_Z139Wb0.webp 480w, /_astro/recherche.llDmH8Ub_ZgILRx.webp 960w" alt="Comparaison des trois modes de recherche, exact, vectoriel et hybride" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="2000" height="1125"></a><figcaption data-astro-cid-f5yi4iwf>Les trois modes de recherche et quand chacun s’applique.</figcaption></figure><figure data-astro-cid-f5yi4iwf><a href="/_astro/resultats.CZUXu19P_2sVvnu.webp" aria-label="Agrandir : Diapositive des résultats, score moyen de 0,85 pour le RAG contre 0,40 pour le modèle seul" data-astro-cid-f5yi4iwf><img src="/_astro/resultats.CZUXu19P_Z2vl9iI.webp" srcset="/_astro/resultats.CZUXu19P_1hlowq.webp 480w, /_astro/resultats.CZUXu19P_23LyOS.webp 960w" alt="Diapositive des résultats, score moyen de 0,85 pour le RAG contre 0,40 pour le modèle seul" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="2000" height="1125"></a><figcaption data-astro-cid-f5yi4iwf>La synthèse des résultats de la première version, présentée en soutenance.</figcaption></figure><figure data-astro-cid-f5yi4iwf><a href="/_astro/recherche-exacte-cve.BmCOUnIe_2kSCkM.webp" aria-label="Agrandir : Terminal montrant la détection de l’identifiant CVE-2025-14037 et la réponse obtenue" data-astro-cid-f5yi4iwf><img src="/_astro/recherche-exacte-cve.BmCOUnIe_fjUBb.webp" srcset="/_astro/recherche-exacte-cve.BmCOUnIe_Z1HupUX.webp 480w, /_astro/recherche-exacte-cve.BmCOUnIe_ZcNQIk.webp 960w" alt="Terminal montrant la détection de l’identifiant CVE-2025-14037 et la réponse obtenue" sizes="(max-width: 46rem) 100vw, 34rem" data-astro-cid-f5yi4iwf="true" loading="lazy" decoding="async" width="2000" height="1125"></a><figcaption data-astro-cid-f5yi4iwf>La recherche exacte d’une CVE à partir de son identifiant.</figcaption></figure></div></section><nav class="pager" aria-label="Autres projets" data-astro-cid-f5yi4iwf><span data-astro-cid-f5yi4iwf></span><a class="pager-link next" href="/projets/vacances-connectees/" data-astro-cid-f5yi4iwf><span class="pager-dir" data-astro-cid-f5yi4iwf>Projet suivant <svg
+  class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m9 18 6-6-6-6" />
+</svg></span><span class="pager-title" data-astro-cid-f5yi4iwf>VacancesConnectées</span></a></nav></article></main><footer class="site-footer" data-astro-cid-jo6i4kqk><div class="container footer-inner" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>© 2026 Maxence Français</p><p class="muted" data-astro-cid-jo6i4kqk>Site statique construit avec Astro et hébergé sur GitHub Pages.<a href="https://github.com/MiscuitAtlas/MiscuitAtlas.github.io" rel="noopener noreferrer" data-astro-cid-jo6i4kqk>Voir le code source</a></p></div></footer></body></html>
