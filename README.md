@@ -18,7 +18,7 @@ Il remplace la [première version](https://github.com/MiscuitAtlas/portfolio-boo
 
 - Content Security Policy générée par Astro à chaque build : chaque script et chaque style en ligne est autorisé par son empreinte SHA-256, sans `unsafe-inline`.
 - Aucune ressource tierce au chargement : pas de CDN, de police externe ni de traceur.
-- Le formulaire de contact passe par Formspree, avec un champ piège contre le spam. Aucun numéro de téléphone ni adresse email n'est publié.
+- Le formulaire de contact passe par Formspree, avec un champ piège contre le spam. Mon numéro de téléphone et mon email ne figurent que dans le CV.
 
 ## Développer en local
 

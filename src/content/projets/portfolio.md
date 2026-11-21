@@ -33,7 +33,7 @@ Le site que vous lisez. Il présente mon parcours et mes projets, et applique le
 
 - **Content Security Policy** générée à chaque build : chaque script et chaque feuille de style autorisés sont identifiés par leur empreinte, sans `unsafe-inline`.
 - **Aucune ressource tierce** : polices et icônes sont servies par le site lui-même. Aucun traceur, aucune requête vers un CDN.
-- **Données personnelles limitées** : pas de téléphone ni d’adresse e-mail publiés, le contact passe par un formulaire avec un champ piège anti-spam.
+- **Données personnelles limitées** : le contact passe par un formulaire avec un champ piège anti-spam, et mon téléphone et mon adresse e-mail ne figurent que dans le CV.
 
 ## Accessibilité
 
